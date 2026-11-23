@@ -11,7 +11,7 @@ The project uses the BSD 3-Clause license. See `LICENSE`. A change that you send
 - Open an issue for a large change: a new subsystem, a new file format, a change to the network protocol. Explain what you want to do and why. Wait for an answer before you write much code.
 - Send a small fix directly. A typo, a crash, a wrong number: these need no discussion.
 - Do not edit `deps/`. It holds vendored third-party code and its update scripts.
-- Do not commit `build/`, `dist/`, `site/` or `.vscode/settings.json`. The build writes the first three, and the last one belongs to your machine.
+- Do not commit `build/`, `dist/` or `.vscode/settings.json`. The build writes the first two, and the last one belongs to your machine.
 
 ## Making a change
 
