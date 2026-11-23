@@ -1,0 +1,14 @@
+[book]
+title = "Voxelius"
+description = "Engine and modding documentation for Voxelius"
+language = "en"
+src = "src"
+
+[build]
+build-dir = "book"
+
+[output.html]
+site-url = "/docs/"
+additional-css = ["theme/extra.css"]
+git-repository-url = "https://github.com/voxelius/voxelius"
+edit-url-template = "https://github.com/voxelius/docs/edit/main/{path}"

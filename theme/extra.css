@@ -1,0 +1,5 @@
+/* The stock 20px cell padding pushes a five-column table past the 750px page column. */
+table td,
+table thead th {
+    padding: 3px 10px;
+}
