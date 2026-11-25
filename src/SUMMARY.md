@@ -22,6 +22,7 @@
 - [Overview](modding/overview.md)
 - [Mod metadata](modding/modinfo.md)
 - [Filesystem](modding/filesystem.md)
+- [World definitions](modding/worlds.md)
 
 # Engine API
 
@@ -31,7 +32,7 @@
 - [Fluids](modding/api/fluids.md)
 - [Blocks](modding/api/blocks.md)
 - [Biomes](modding/api/biomes.md)
-- [Worlds](modding/api/worlds.md)
+- [Precipitation](modding/api/precip.md)
 - [Weather](modding/api/weather.md)
 - [Entities](modding/api/entities.md)
 - [World](modding/api/world.md)

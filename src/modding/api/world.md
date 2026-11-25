@@ -165,7 +165,7 @@ Retrieves the effective temperature of the biome at a block.
 
 #### Notes
 
-Rain and snow lower the effective temperature by up to two degrees Celsius, scaled by the type's coverage at the block. Seasons and other world-wide effects will add their own bias later. Relatively low values (below 0 C) turn planned rain into snow at that location.
+Precipitation lowers the effective temperature by up to two degrees Celsius. The change scales with the share of the front at the block, and a roof stops it. The engine uses this value to pick the precipitation type. Seasons and other world-wide effects will add their own bias later.
 
 ### Function: `world.get_humidity_base(bx, by, bz) -> number`
 
@@ -179,8 +179,8 @@ Retrieves the base relative humidity of the biome at a block.
 
 #### Return value
 
-- Base relative humidity as a percentage, from 0 to 100
-- `50.0` if the block is void or the chunk is not present
+- Base relative humidity from 0 to 1
+- `0.5` if the block is void or the chunk is not present
 
 ### Function: `world.get_humidity(bx, by, bz) -> number`
 
@@ -194,20 +194,20 @@ Retrieves the effective relative humidity of the biome at a block.
 
 #### Return value
 
-- Effective relative humidity as a percentage, from 0 to 100
-- `50.0` if the block is void or the chunk is not present
+- Effective relative humidity from 0 to 1
+- `0.5` if the block is void or the chunk is not present
 
 #### Notes
 
-Rain and snow push the effective humidity towards 0.98, scaled by the type's coverage at the block. Other world-wide effects will add their own bias later.
+Precipitation pushes the effective humidity towards 0.98, scaled by the share of the front at the block. A roof stops the change. Other world-wide effects will add their own bias later.
 
-### Function: `world.id() -> string`
+### Function: `world.name() -> string`
 
-Retrieves the identifier of the world the callback runs in. Callbacks from every world share one Lua state. A mod that serves more than one world keeps its state per world, keyed by this value.
+Retrieves the name of the world that the callback runs in. Callbacks from every world share one Lua state. A mod that serves more than one world keeps its state per world, keyed by this value.
 
 #### Return value
 
-- The world identifier, for example `builtin:overworld`
+- The world name, for example `overworld`. This is the key of the world in [worlds.jsonc](../worlds.md), not a namespaced identifier
 
 ### Function: `world.seed() -> integer`
 

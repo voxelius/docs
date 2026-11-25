@@ -22,13 +22,9 @@ weather.add("thunderstorm", {
     seed = 19,
   },
 
-  precipitation = {
-    kind = "rain",
+  precip = {
+    types = { "rain", "snow", "dry" },
     intensity = 1.0,
-    speed = 34.0,
-    drift = 1.2,
-    size = 0.07,
-    color = { 0.32, 0.38, 0.46 },
   },
 
   strikes_per_minute = 6.0,
@@ -59,7 +55,7 @@ The square drifts with the world's wind. The wind direction and speed come from 
 
 The server advances `weather_tick` once per fixed tick while the replicated gamerule `gr_weather_cycle` is on. `World_Timings` carries that value to each client of the world. A client advances its own copy of the tick between packets, so a late packet does not freeze the sky. The client takes the packet as the correction. A jump of more than a second is a forced front, a rewound clock or a world switch. The client snaps to it and rebuilds the cloud deck instead of sliding the old one across the sky.
 
-The server sends nothing else about the weather. The type definitions travel as part of the mod content, and the login checksum covers them. The weather seed travels in `World_Info`, and the clock in `World_Timings`.
+The server sends nothing else about the weather. The weather and precipitation definitions travel as part of the mod content, and the login checksum covers both registries. The weather seed travels in `World_Info`, and the clock in `World_Timings`.
 
 ## Where the engine keeps the weather
 
@@ -81,10 +77,10 @@ The engine rolls the seed once, when it first saves the world. The seed does not
 |---|---|---|---|
 | `intensity` | number | `1.0` | Overall strength. It scales the cloud coverage and the climate bias |
 | `sky_tint` | RGB | white | Color that replaces the sky where `sky_visibility` is low. The fog takes the horizon color of the resulting gradient |
-| `sky_visibility` | number | `1.0` | How much of the clear sky shows through, from `0` (only `sky_tint`) to `1` (the Rayleigh gradient). The sun, moon and stars fade with it |
+| `sky_visibility` | number | `1.0` | How much of the clear sky shows through, from `0` (only `sky_tint`) to `1` (the Rayleigh gradient). The sun, moon and stars fade with its square |
 | `light` | number | `1.0` | Multiplies the sky light the world receives |
 | `cloud` | table | none | The cloud body of the type. A zero coverage leaves the sky clear |
-| `precipitation` | table | none | Local precipitation. The engine declares and syncs it, but nothing draws it yet |
+| `precip` | table | none | Precipitation front. It names the types and the intensity. See the [precipitation API](precip.md) |
 | `target` | two numbers | `{0.5, 0.5}` | Point this type owns in the climate square, each axis from 0 to 1 |
 | `weight` | number | `1.0` | How far this type's cell reaches from its target. A bigger weight means the type covers more of the world |
 | `strikes_per_minute` | number | `0.0` | How often the type strikes |
@@ -92,7 +88,7 @@ The engine rolls the seed once, when it first saves the world. The seed does not
 
 ### Climate
 
-The sampled type and its coverage also move the local climate. A precipitating type at a point lowers `world.get_temperature` by up to two degrees Celsius and pushes `world.get_humidity` towards 0.98, both scaled by the type's coverage there. Clear, overcast and other types without precipitation leave both values at their biome base.
+The sampled front and its coverage also move the local climate. A front that names precipitation types lowers `world.get_temperature` by up to two degrees Celsius and pushes `world.get_humidity` towards 0.98, both scaled by the coverage of the front there. A roof stops the change: a point at or below the top of its column keeps the biome base. Clear, overcast and other types without precipitation leave both values at their biome base.
 
 ### Cloud body
 
@@ -127,25 +123,22 @@ the faces that the neighbours leave exposed, so a dense deck costs less than
 its area. The deck dissolves into the sky at its own edge instead of ending
 on a rim. It reaches the composite as one more depth-sorted layer.
 
-## Precipitation
+## Precipitation front
+
+A type that can show precipitation names one or more [precipitation types](precip.md):
 
 ```lua
-precipitation = { kind = "rain" } -- or "snow", or omit for none
+precip = {
+  types = { "rain", "snow", "dry" },
+  intensity = 1.0,
+}
 ```
 
-The engine parses and stores the fields below, and the login checksum covers
-them, but nothing draws them yet. A type can carry its precipitation settings
-from now on, and the rendering pass lands with the next change to weather.
-Precipitation is also what biases the local temperature and humidity.
+`types` lists the precipitation type IDs that the front can carry. It defaults to an empty list, which means the type carries no precipitation. A name without a namespace is relative to the calling mod. The engine resolves the names when the weather type commits. It drops a name that is not registered at that point and logs a warning. The old `precipitation` table is gone. A script that still passes it loads, and the engine ignores the value.
 
-| Field | Default | Meaning |
-|---|---|---|
-| `kind` | `"none"` | `"rain"`, `"snow"` or `"none"` |
-| `intensity` | `0.0` | How thick the precipitation is where the front covers the camera |
-| `speed` | `18.0` | Fall speed, in blocks per second |
-| `drift` | `0.0` | Sideways speed, in blocks per second |
-| `size` | `0.08` | Size of one streak or flake, in blocks |
-| `color` | light blue | Color of the streaks or flakes |
+`intensity` scales the amount at full coverage. It defaults to 0.0, so a front without it shows nothing.
+
+The front shares its point with the neighbours, and that share scales the amount. When a front covers a block, the engine scores each type in the front from the effective temperature and the base humidity of the block. The type with the highest score wins. If no type scores, the front shows no precipitation. A roof stops the precipitation.
 
 ## Callbacks
 
@@ -167,10 +160,17 @@ local state = weather.state()
 -- state.seed, state.tick, state.wind_x, state.wind_z, state.wind_speed
 
 local sample = weather.sample(x, z)
--- sample.coverage, sample.type, sample.precipitation
+-- sample.coverage, sample.type, sample.precip
+
+local precip = weather.precip_at(x, y, z)
+-- precip.type, precip.amount
 ```
 
-`weather.sample` and `weather.force` take the block X and Z: the field is two-dimensional and does not depend on height.
+`sample.precip` is the front intensity multiplied by its coverage at the point. It is `0` when the type has no precipitation types.
+
+`precip.type` is `precip.NULL_TYPE` when no type fits or a roof covers the block. `precip.amount` is the amount that the front carries at the block, from 0 to 1.
+
+`weather.sample` and `weather.force` take the block X and Z: the field is two-dimensional and does not depend on height. `weather.precip_at` takes the block X, Y and Z, because the type selection also depends on the local climate and on the cover above the block.
 
 `weather.force` exists on the server only. The field is absent on the client.
 

@@ -48,7 +48,7 @@ The invite code is a one-time code. On a successful login, the server consumes t
 
 ##### Registry hashes
 
-The client sends its block, biome, fluid, tint, and entity class registry hashes. The server checks each hash against its own. A mismatch means the two sides disagree on what a given ID means. When that happens, the server disconnects the client with a checksum mismatch reason. Neither side acts on the disagreement.
+The client sends its block, biome, fluid, tint, entity class, weather and precipitation registry hashes. The server checks each hash against its own. A mismatch means the two sides disagree on what a given ID means. When that happens, the server disconnects the client with a checksum mismatch reason. Neither side acts on the disagreement.
 
 This check protects both sides:
 
@@ -113,11 +113,13 @@ Once the server admits a client, the client asks for chunks and reports block an
 
 ##### Chunk transfer
 
-The client sends `RequestChunk` every fixed tick with the chunk-aligned view it needs. The server intersects that box with its own view limit and sends only what the peer does not hold yet. The server answers with `ChunkBlocks`, holding that chunk's full block data. It also sends `ChunkBlocks` on its own initiative, as a full resync.
+The client sends `RequestChunk` every fixed tick with two boxes: the chunk-aligned view it needs, and the XZ interest box for column data. The server intersects each box with its own view limit and sends only what the peer does not hold yet. The server answers with `ChunkBlocks`, holding that chunk's full block data. It also sends `ChunkBlocks` on its own initiative, as a full resync.
+
+Biomes and column heights belong to an XZ column, not to one chunk. The server sends `ChunkBiomes` and `ChunkColumns` once per column. `ChunkColumns` carries the surface and liquid heights that precipitation and the shelter checks use. When a column changes, the server sends `Column` to the sessions whose interest box holds that column. A client drops a column that leaves its interest box, and the server sends it again when the client comes back.
 
 ##### World info
 
-The server sends `World_Info` at admission and again when a session moves to another world. It carries the world's id, its vertical bounds and spawn point, its optional visual groups, the weather types it allows and the world's weather seed. The client builds its one world from this packet instead of a local world definition. These values never change for a world, so the periodic packets do not repeat them. The world seed is not in the packet: the client streams terrain without being able to predict it. The client derives its star field seed from the weather seed, which both sides compute the same way. The length of a day is not here either: it is the replicated server variable `sv_day_length`, so a change reaches every connected client without another packet.
+The server sends `World_Info` at admission and again when a session moves to another world. It carries the world's name, its vertical bounds and spawn point, its optional visual groups, the weather types it allows and the world's weather seed. The client builds its one world from this packet instead of a local world definition. These values never change for a world, so the periodic packets do not repeat them. The world seed is not in the packet: the client streams terrain without being able to predict it. The client derives its star field seed from the weather seed, which both sides compute the same way. The length of a day is not here either: it is the replicated server variable `sv_day_length`, so a change reaches every connected client without another packet.
 
 ##### World switch
 
@@ -129,7 +131,7 @@ The server owns a world clock per world. `World_Timings` carries the universe-wi
 
 ##### Weather
 
-The engine derives the weather, and it does not stream it. The server rolls one weather seed per world and keeps it in that world's `world.conf`, independent of the world seed. It sends the seed once in `World_Info`. Every tick the server advances a per-world `weather_tick` and sends it in `World_Timings`. That is the only weather value on the wire after admission. Both sides turn the pair `(weather_seed, weather_tick)` and a world position into the same field. Two drifting noise grids form the two axes of a climate square, and every weather type owns a target point in that square. The nearest target and its soft share decide the type and the local strength. There is no drift or baseline packet any more, and no accumulated drift to diverge. The same seed and the same tick always give the same field. A client advances its copy of the tick between packets, and it snaps when a packet jumps the clock by more than a second. That jump is what `weather_force` and a world switch look like. The replicated `gr_weather_cycle` gamerule stops the weather clock on the server and the client's local advance together. The login checksum covers the type definitions, which travel as part of the mod content.
+The engine derives the weather, and it does not stream it. The server rolls one weather seed per world and keeps it in that world's `world.conf`, independent of the world seed. It sends the seed once in `World_Info`. Every tick the server advances a per-world `weather_tick` and sends it in `World_Timings`. That is the only weather value on the wire after admission. Both sides turn the pair `(weather_seed, weather_tick)` and a world position into the same field. Two drifting noise grids form the two axes of a climate square, and every weather type owns a target point in that square. The nearest target and its soft share decide the type and the local strength. There is no drift or baseline packet any more, and no accumulated drift to diverge. The same seed and the same tick always give the same field. A client advances its copy of the tick between packets, and it snaps when a packet jumps the clock by more than a second. That jump is what `weather_force` and a world switch look like. The replicated `gr_weather_cycle` gamerule stops the weather clock on the server and the client's local advance together. The login checksums cover the weather and precipitation definitions, which travel as part of the mod content. The precipitation type is local: both sides derive it from the same weather field and the block climate, so no precipitation state travels.
 
 ##### Block and entity actions
 
@@ -188,6 +190,8 @@ Request an authentication on a server
 |`uint64`|`fluids_hash`|Fluid registry hash|
 |`uint64`|`tints_hash`|Tint registry hash|
 |`uint64`|`ents_hash`|Entity registry hash|
+|`uint64`|`weather_hash`|Weather registry hash|
+|`uint64`|`precip_hash`|Precipitation registry hash|
 |`string`|`username`|Desired username|
 
 ### `0x0003` `AuthChallengePacket`
@@ -244,12 +248,14 @@ Disconnection notification. Each side should close the connection right after th
 
 ### `0x0007` `RequestChunk`
 
-The client sends this packet every fixed tick to describe what world data it wants. The packet carries a chunk-aligned box and a budget. The server intersects the box with its view limit, stores what the peer already has, and sends only the difference. A box with `min > max` is empty.
+The client sends this packet every fixed tick to describe what world data it wants. The packet carries a chunk-aligned view box, an XZ interest box for column data and a budget. The server intersects each box with its view limit, stores what the peer already has, and sends only the difference. A box with `min > max` is empty.
 
 |Type|Name|Description|
 |----|----|----|
 |`vector3<int32>`|`view_min`|Minimum chunk of the view|
 |`vector3<int32>`|`view_max`|Maximum chunk of the view|
+|`vector2<int32>`|`interest_min`|Minimum XZ chunk of the column interest|
+|`vector2<int32>`|`interest_max`|Maximum XZ chunk of the column interest|
 |`uint16`|`chunk_budget`|How many chunks the server may queue now|
 
 The budget carries the client's backpressure. The client lowers the budget while its mesher queues more work than it can take. The sent sets live on the server, and the server fills them only when it hands a packet to ENet. The server therefore retries a request that produces no data instead of counting it as delivered.
@@ -276,7 +282,18 @@ The server sends this packet as a response to `RequestChunk` to synchronize the 
 
 `WriteBuffer::write_compressed` writes every compressed field, and `ReadBuffer::read_compressed` reads it back. Such a field holds four parts. The parts are a mode byte, the size that the data had before compression, the size that it takes in the buffer, and the bytes. The bytes are either raw or a zlib stream. The engine compresses the whole array at once, so the ratio is the one that the codec gets over a chunk. A transport would get a different ratio out of a single datagram.
 
-### `0x000A` `ChunkLight`
+### `0x000A` `ChunkColumns`
+
+The server sends this packet once per XZ column to synchronize the surface and liquid heights that precipitation and the shelter checks use.
+
+|Type|Name|Description|
+|----|----|----|
+|`vector2<int32>`|`cpos`|XZ chunk position|
+|`data`|`columns`|Compressed list of 256 columns. Each column holds two `int32` values: `surface_y` and `liquid_y`|
+
+A stored height of `INT32_MIN` means that the column has no such block.
+
+### `0x000B` `ChunkLight`
 
 The server sends this packet when the light of chunks that it has already synchronized changes. One packet carries every chunk whose light changed in a tick. Each entry is
 either a delta over the cells that changed or, when most of the chunk changed,
@@ -302,7 +319,7 @@ The server applies a delta only to a chunk that the client already holds light f
 
 The server splits a batch when it would exceed 32 KiB. A tick that relights a large part of the view distance therefore turns into several packets instead of one huge one.
 
-### `0x000B` `SetBlock`
+### `0x000C` `SetBlock`
 
 The server sends this packet as a sub-chunk block update
 
@@ -311,7 +328,17 @@ The server sends this packet as a sub-chunk block update
 |`vector3<int64>`|`bpos`|World-scale block position|
 |`uint32`|`block`|Resulting numeric block ID|
 
-### `0x0011` `PlayerAttackE`
+### `0x000D` `Column`
+
+The server sends this packet when the surface or liquid height of a column changes.
+
+|Type|Name|Description|
+|----|----|----|
+|`vector2<int64>`|`bpos`|World-scale XZ block position|
+|`int32`|`surface_y`|Top surface block, or `INT32_MIN`|
+|`int32`|`liquid_y`|Top liquid block, or `INT32_MIN`|
+
+### `0x0013` `PlayerAttackE`
 
 Sent by client to specify an attack action against an entity
 
@@ -319,7 +346,7 @@ Sent by client to specify an attack action against an entity
 |----|----|----|
 |`uint64`|`target`|Targeted entity|
 
-### `0x0012` `PlayerAttackB`
+### `0x0014` `PlayerAttackB`
 
 Sent by client to specify an attach action against a block
 
@@ -328,7 +355,7 @@ Sent by client to specify an attach action against a block
 |`vector3<int64>`|`bpos`|Targeted block position|
 |`uint32`|`expected`|Numeric block ID the client expects at `bpos`|
 
-### `0x0013` `PlayerInteractE`
+### `0x0015` `PlayerInteractE`
 
 Sent by client to specify an interact action against an entity
 
@@ -338,7 +365,7 @@ Sent by client to specify an interact action against an entity
 |----|----|----|
 |`uint64`|`target`|Targeted entity|
 
-### `0x0014` `PlayerInteractB`
+### `0x0016` `PlayerInteractB`
 
 Sent by client to specify an interact action against a block
 
@@ -350,7 +377,7 @@ Sent by client to specify an interact action against a block
 |`vector3<float>`|`normal`|Hit normal|
 |`vector3<float>`|`point`|Hit point local to the block|
 
-### `0x0016` `EntitySpawn`
+### `0x0018` `EntitySpawn`
 
 The server sends this packet when it spawns an entity
 
@@ -359,7 +386,7 @@ The server sends this packet when it spawns an entity
 |`uint64`|`id`|Entity ID|
 |`class_id_type`|`class_id`|Numeric class ID|
 
-### `0x0017` `EntityPatch`
+### `0x0019` `EntityPatch`
 
 The server sends this packet when it updates a component of an entity
 
@@ -369,7 +396,7 @@ The server sends this packet when it updates a component of an entity
 |`uint32`|`ncomp`|Component count|
 |`component[ncomp]`|`components`|Serialized components|
 
-### `0x0018` `EntityRemove`
+### `0x001A` `EntityRemove`
 
 The server sends this packet when it removes an entity
 

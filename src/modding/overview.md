@@ -33,13 +33,15 @@ A mod runs on both the client and the server from the same `scripts/init.lua`. T
 |`core.IS_CLIENT`|True on the client|
 |`core.IS_SERVER`|True on the server|
 
-Some APIs exist on the server only: `worlds`, `world.schedule`, `world.seed` and `weather.force`. Their table or field is absent on the client, so an unguarded call fails the mod on that side. Guard it with `core.IS_SERVER`:
+Some APIs exist on the server only: `world.schedule`, `world.seed` and `weather.force`. Their table or field is absent on the client, so an unguarded call fails the mod on that side. Guard it with `core.IS_SERVER`:
 
 ```lua
 if core.IS_SERVER then
-  dofile("world/overworld.lua")
+  dofile("loot_server.lua")
 end
 ```
+
+World definitions are server configuration, not a Lua API. See [World definitions](worlds.md).
 
 |Callback|Runs on|
 |----|----|
@@ -48,7 +50,7 @@ end
 |`blocks.on_interact`|Server only. The engine does not call it yet|
 |`weather.on_tick`, `weather.on_strike`|Server only|
 
-Register content such as blocks, biomes and weather types unconditionally. A definition registered on one side only changes the numeric IDs on that side and desynchronizes the two sides.
+Register content such as blocks, biomes, precipitation types and weather types unconditionally. A definition registered on one side only changes the numeric IDs on that side and desynchronizes the two sides.
 
 ## Error handling
 
