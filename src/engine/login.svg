@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 462" width="700" height="462" style="max-width:100%;height:auto">
+<rect x="44" y="16" width="128" height="38" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="108.00" y="41.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Client</text>
+<rect x="528" y="16" width="128" height="38" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="592.00" y="41.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="18" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Server</text>
+<path d="M 108,54 L 108,444" fill="none" stroke="#5b6168" stroke-width="1.4" stroke-dasharray="7 7"/>
+<path d="M 592,54 L 592,444" fill="none" stroke="#5b6168" stroke-width="1.4" stroke-dasharray="7 7"/>
+<path d="M 108.00,97.00 L 577.00,97.00 L 577.00,95.00 L 108.00,95.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 577.00,101.50 L 588.00,96.00 L 577.00,90.50 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 108.00,97.00 L 577.00,97.00 L 577.00,95.00 L 108.00,95.00 Z" fill="#1a1a1a"/>
+<path d="M 577.00,101.50 L 588.00,96.00 L 577.00,90.50 Z" fill="#1a1a1a"/>
+<text x="350.00" y="84.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="bold" text-anchor="middle" fill="#7a818a">The client connects</text>
+<text x="20.00" y="101.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="normal" text-anchor="start" fill="#7a818a">1</text>
+<path d="M 108.00,159.00 L 577.00,159.00 L 577.00,157.00 L 108.00,157.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 577.00,163.50 L 588.00,158.00 L 577.00,152.50 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 108.00,159.00 L 577.00,159.00 L 577.00,157.00 L 108.00,157.00 Z" fill="#1a1a1a"/>
+<path d="M 577.00,163.50 L 588.00,158.00 L 577.00,152.50 Z" fill="#1a1a1a"/>
+<text x="350.00" y="128.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="bold" text-anchor="middle" fill="#7a818a">AuthRequestPacket: username, public key,</text>
+<text x="350.00" y="146.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="bold" text-anchor="middle" fill="#7a818a">invite code, versions, seven registry hashes</text>
+<text x="20.00" y="163.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="normal" text-anchor="start" fill="#7a818a">2</text>
+<path d="M 592.00,219.00 L 123.00,219.00 L 123.00,221.00 L 592.00,221.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 123.00,214.50 L 112.00,220.00 L 123.00,225.50 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 592.00,219.00 L 123.00,219.00 L 123.00,221.00 L 592.00,221.00 Z" fill="#1a1a1a"/>
+<path d="M 123.00,214.50 L 112.00,220.00 L 123.00,225.50 Z" fill="#1a1a1a"/>
+<text x="350.00" y="208.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="bold" text-anchor="middle" fill="#7a818a">AuthChallengePacket: a random 64-byte nonce</text>
+<text x="20.00" y="225.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="normal" text-anchor="start" fill="#7a818a">3</text>
+<path d="M 108.00,283.00 L 577.00,283.00 L 577.00,281.00 L 108.00,281.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 577.00,287.50 L 588.00,282.00 L 577.00,276.50 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 108.00,283.00 L 577.00,283.00 L 577.00,281.00 L 108.00,281.00 Z" fill="#1a1a1a"/>
+<path d="M 577.00,287.50 L 588.00,282.00 L 577.00,276.50 Z" fill="#1a1a1a"/>
+<text x="350.00" y="252.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="bold" text-anchor="middle" fill="#7a818a">AuthResponsePacket: the nonce and the UTC</text>
+<text x="350.00" y="270.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="bold" text-anchor="middle" fill="#7a818a">minute, signed</text>
+<text x="20.00" y="287.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="normal" text-anchor="start" fill="#7a818a">4</text>
+<path d="M 592.00,343.00 L 123.00,343.00 L 123.00,345.00 L 592.00,345.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 123.00,338.50 L 112.00,344.00 L 123.00,349.50 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 592.00,343.00 L 123.00,343.00 L 123.00,345.00 L 592.00,345.00 Z" fill="#1a1a1a"/>
+<path d="M 123.00,338.50 L 112.00,344.00 L 123.00,349.50 Z" fill="#1a1a1a"/>
+<text x="350.00" y="314.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="bold" text-anchor="middle" fill="#7a818a">AuthAdmissionPacket: client id, identity,</text>
+<text x="350.00" y="332.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="bold" text-anchor="middle" fill="#7a818a">username</text>
+<text x="20.00" y="349.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="normal" text-anchor="start" fill="#7a818a">5</text>
+<rect x="60" y="380" width="584" height="34" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.4"/>
+<text x="354.00" y="402.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="bold" text-anchor="middle" fill="#1a1a1a">From here the entity and game packets flow</text>
+</svg>

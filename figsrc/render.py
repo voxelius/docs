@@ -14,6 +14,7 @@ import arch
 import blocks
 import charts
 import facing
+import net
 import style
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,6 +25,8 @@ DESTINATIONS = {
     "cloud-rings.svg": "src/engine",
     "boot-stages.svg": "src/engine",
     "resource-life.svg": "src/engine",
+    "status-ping.svg": "src/engine",
+    "login.svg": "src/engine",
     "bcoll-shapes.svg": "src/modding/formats",
     "bmodel-grid.svg": "src/modding/formats",
     "slabs-orientation.svg": "src/modding/libs",
@@ -42,6 +45,8 @@ FIGURES = {
     "cloud-rings": arch.cloud_rings,
     "boot-stages": arch.stages,
     "resource-life": arch.resources,
+    "status-ping": net.status,
+    "login": net.login,
     "bcoll-shapes": blocks.bcoll_shapes,
     "bmodel-grid": blocks.bmodel_grid,
     "slabs-orientation": blocks.slabs_orientation,

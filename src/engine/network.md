@@ -12,6 +12,10 @@ A client can connect just to ask a server about itself: protocol version, MOTD, 
 
 ### Flow
 
+The figure shows the exchange. The table lists the same steps.
+
+![A status ping: the client asks, the server answers, the server closes the connection](status-ping.svg)
+
 |Step|Sender|Receiver|Description|
 |----|----|----|----|
 |1|Client|Server|The client connects|
@@ -24,6 +28,10 @@ A client can connect just to ask a server about itself: protocol version, MOTD, 
 If the client sends a login request instead of a status request, the server starts an authentication exchange.
 
 ### Flow
+
+The figure shows the exchange. The table lists the same steps.
+
+![A login: the request, the challenge, the signed nonce and the admission](login.svg)
 
 |Step|Sender|Receiver|Description|
 |----|----|----|----|
