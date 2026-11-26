@@ -53,4 +53,4 @@ A wrapper around `blocks.add` that defines a slab block family.
 - A fillable slab gets `on_tick` and `on_break`. A filled cell keeps a full source that flows out of its open faces and ticks on neighbour changes, like a waterlogged block in vanilla. Breaking it leaves the fluid source behind.
 - Using a fluid on a fillable slab fills the slab instead of placing a fluid block next to it.
 - Placing a fillable slab into a fluid source fills it immediately. The engine displaces flowing water, and the slab stays dry.
-- The function keeps the touch response values from the prototype unchanged. It only defines block collisions.
+- The function keeps the movement response fields (`collidable`, `selectable`, `friction`, `speed`, `bounce`) of the prototype unchanged. It only defines block collisions.

@@ -55,10 +55,37 @@ Looks up a registered fluid by name.
 |`albedo`|`table`|yes|N/D|Fluid albedo textures|
 |`masks`|`table`|no|`{}`|Fluid mask textures|
 |`full_level`|`integer`|yes|N/D|Level that counts as a full cell, in 1/16ths of a block|
+|`physics`|`table`|yes|N/D|Movement values inside the fluid (see below)|
 |`opaque`|`boolean`|no|`false`|If `true`, fluid quads use the `blocks.RENDER_SOLID` step instead of the fluid step|
 |`tint`|`string`|no|`nil`|Namespaced tint id|
 |`fog_density`|`number`|no|1.0|When the client camera is inside this fluid, the engine divides fog distance by this value|
 |`fog_color`|`number[3]`|no|`{1,1,1}`|When the client camera is inside this fluid, the engine replaces fog color with this value|
+
+## Fluid physics
+
+The `physics` table holds the movement values that the engine uses while an entity is inside the fluid. Every field is required.
+
+|Field|Type|Description|
+|----|----|----|
+|`drag`|`number`|Multiplier on the velocity of the entity each fixed tick|
+|`gravity_scale`|`number`|Share of gravity that acts on the entity|
+|`input_scale`|`number`|Scale of the horizontal input|
+|`swim_speed`|`number`|Upward movement that the jump input adds each fixed tick|
+|`climb_speed`|`number`|Upward movement when the entity jumps against a wall|
+|`flow_scale`|`number`|Scale of the fluid flow that pushes the entity. The engine multiplies it by the submersion|
+
+The built-in water uses these values:
+
+```lua
+physics = {
+    drag = 0.8,
+    gravity_scale = 0.0625,
+    input_scale = 0.02,
+    swim_speed = 0.04,
+    climb_speed = 0.3,
+    flow_scale = 0.014,
+}
+```
 
 ## Fluid textures
 

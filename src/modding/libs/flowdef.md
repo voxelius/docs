@@ -103,4 +103,4 @@ The library mirrors the vanilla `FlowingFluid` and `WaterFluid` classes:
 - A fillable cell takes a source only, like `canPlaceLiquid` does. Flowing water never fills a block. A filled cell is therefore a source that cannot seed another one at its neighbour. A flow into a field of fillable blocks stops instead of flooding it.
 - Among the directions that can take fluid, the cell picks the ones that lead to the nearest drop within `slope_range`.
 - With `infinite`, two horizontal sources turn a cell into a source when the cell below is solid or holds another source.
-- The engine stores a falling cell as `source = "false"` with `level` equal to `max_level`, so `variants` renders it full.
+- The engine stores a falling cell as `source = "false"` with `level` equal to `max_level`, and it sets `fluid_falling = true` on that variant. The cell keeps the flowing texture, and the flow points down.

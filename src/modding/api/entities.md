@@ -110,11 +110,12 @@ Marks the class that the engine spawns when a player joins the world.
 |----|----|----|
 |`transform`|`{}`|`{ bpos = {...}, angs = {...} }`|
 |`head`|`{ x, y, z }`|`{ x, y, z }`|
+|`collision`|`{ step_height, width, height }`|`{ step_height, width, height }`|
 |`velocity`|`{}`|`{ x, y, z }`|
 |`move_mode`|`{ value = "WALK" }`|`{ value = "WALK" }`|
 |`player`|`{}`|none|
 
-A component that the engine does not know is an error at `entities.add`. The engine has these five components.
+A component that the engine does not know is an error at `entities.add`. The engine has these six components.
 
 ### `transform`
 
@@ -127,8 +128,19 @@ Holds the position and the facing of the entity. Both patch fields are optional 
 
 Holds the head of the entity.
 
-- The definition config is the offset of the head from the entity origin, as three numbers in blocks. The built-in player uses `{ 0.4, 0.4, 1.65 }`
+- The definition config is the offset of the head from the entity origin, as three numbers in blocks. The default is `{ 0, 0, 0 }`. The built-in player uses `{ 0, 1.62, 0 }`
 - The patch config is the look angles, as three numbers in radians. The engine clamps the pitch of a player to 90 degrees
+
+### `collision`
+
+Holds the collision box of the entity and the height that it steps over.
+
+- The definition config requires `step_height`, a number in blocks. The value must not be negative
+- The config also needs a box. Use `min` and `max` for an explicit box, or `width` and `height` for a box at the entity origin. Give both fields of one pair
+- A `width` and `height` box is centered on the entity origin on X and Z. It starts at the feet and reaches `height` blocks up
+- The patch config accepts `step_height`, `min` and `max`, or `width` and `height`. Absent fields keep their current value
+- The built-in player uses `{ width = 0.6, height = 1.8, step_height = 0.5 }`
+- A class in `WALK` mode needs this component. Without it, `pmove` logs a warning and does not move the entity.
 
 ### `velocity`
 

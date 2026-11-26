@@ -1,6 +1,6 @@
 # Block Collisions
 
-Block collisions define the physical shape for touch and movement response. These models are separate from render geometry.
+Block collisions define the physical shape of a block. The engine uses the shape for collision, movement and selection. The `collidable` and `selectable` fields of the [block definition](../api/blocks.md#block-definition) decide whether the engine uses the shape for physics and for raycasts. These models are separate from render geometry.
 
 Lighting reads the same shape: a block only absorbs light across the cell faces the collision covers. A shape that fills half a cell, such as a slab, leaves the other half open for light.
 

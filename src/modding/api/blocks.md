@@ -42,17 +42,6 @@ Defines a tool category used for block interactions.
 |`blocks.TOOL_HAMMER`|Hammer-like tool|
 |`blocks.TOOL_PICK`|Pickaxe-like tool|
 
-## Constants: touch responses
-
-Defines a touch response for a block.
-
-|Name|Description|
-|----|----|
-|`blocks.TOUCH_NONE`|Block is not collidable|
-|`blocks.TOUCH_SOLID`|Movement stops in the touch direction|
-|`blocks.TOUCH_BOUNCE`|The block reflects movement with some attenuation. The engine reserves it for future use (e.g. slime-like blocks). No builtin block uses it yet|
-|`blocks.TOUCH_THROUGH`|The block attenuates movement but does not change its direction. The engine reserves it for future use (e.g. cobweb, liquids). No builtin block uses it yet|
-
 ## Constants: category bits
 
 Freeform grouping tags checked at runtime with `blocks.has_tag`. Any block can carry any number of tags via the `tags` registration field.
@@ -161,12 +150,16 @@ Returns the numeric block ID.
 |`fluid_name`|`string`|no|N/D|[Fluid](fluids.md) name that shares the grid cell with the block|
 |`fluid_level`|`integer`|no|fluid `full_level`|Fluid level when `fluid_name` is present, in 1/16ths of a block. When omitted, the engine uses the fluid's `full_level`|
 |`fluid_faces`|`integer`|no|`0`|Bitmask of faces a fluid may enter or leave this variant through, made of `blocks.FACE_*` bits. `0` means the variant cannot be filled|
+|`fluid_falling`|`boolean`|no|`false`|If true, the engine treats the fluid in this cell as falling. The cell uses the flowing texture at every level, and the flow points down|
 |`health`|`integer`|no|`0`|Base hit points needed to break the block. Tool effects can change this|
 |`sound`|`string`|no|N/D|Sound set for this block|
 |`emission`|`integer`|no|`0`|Emission light value, from `0` to `15`. The engine clamps values outside the range|
 |`dissipation`|`integer`|no|`0`|Opacity of the block, from `0` to `15`. Light loses this many levels when it passes through. The engine clamps values outside the range. The engine treats a `RENDER_SOLID` block with `0` dissipation as fully opaque. The block only absorbs light across the cell faces that its collision shape covers. A block that fills half a cell lets light through its open half|
-|`touch`|`integer`|no|`blocks.TOUCH_SOLID`|Block touch response|
-|`touch_coeffs`|`number[3]`|no|`{1, 1, 1}`|Block touch response coefficients|
+|`collidable`|`boolean`|no|`true`|If true, the engine uses the collision shape to stop entity movement. A fluid does not pass through the block|
+|`selectable`|`boolean`|no|`true`|If true, a raycast can hit the block for selection and placement|
+|`friction`|`number`|no|`0.6`|Surface friction. A lower value makes the surface more slippery. The value must be greater than zero|
+|`speed`|`number`|no|`1.0`|Walk speed multiplier on this surface. The value must not be negative|
+|`bounce`|`number[3]`|no|`{0, 0, 0}`|Restitution on the X, Y and Z axes. The engine reflects the movement along a contacted axis and scales it by this value|
 |`tags`|`integer[]`|no|`{}`|Block tags|
 |`replaceable`|`boolean`|no|`false`|If true, other blocks can be placed into this cell without breaking it first|
 |`states`|`table`|no|`{}`|Blockstates table|
@@ -183,6 +176,18 @@ Returns the numeric block ID.
 |`on_place`, `on_break`|Both sides. The client predicts, the server decides|
 |`on_tick`|Server only|
 |`on_interact`|Server only. The engine does not call it yet|
+
+### Movement response
+
+`collidable` controls collision with entities and the flow of fluids. A block with `collidable = false` does not stop movement, and a fluid passes through it. `selectable` controls selection and placement. A raycast can hit a selectable block even when the block is not collidable, as a bush is. A block without a collision shape is not selectable, because the raycast needs the shape.
+
+The surface fields apply to an entity in walk mode:
+
+- `friction` scales the horizontal velocity and the walk acceleration. The default `0.6` matches the walk friction of the engine. A lower value makes the surface slippery like ice. A higher value stops the entity faster.
+- `speed` multiplies the horizontal walk input. The value `0` removes the ground input.
+- `bounce` gives the restitution for a contact along each axis. The engine reflects the movement along the contacted axis and multiplies it by the value. The value `0` stops the movement, and `1` keeps its speed.
+
+The `touch` and `touch_coeffs` fields and the `TOUCH_*` constants no longer exist. An old script that still sets them loads, and the engine ignores the values.
 
 ### Textures
 
