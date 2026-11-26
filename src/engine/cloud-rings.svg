@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 452" width="760" height="452" style="max-width:100%;height:auto">
+<rect x="152.0" y="234.0" width="56.0" height="56.0" fill="none" stroke="#e6eef9" stroke-width="56" stroke-linejoin="miter"/>
+<rect x="96.0" y="178.0" width="168.0" height="168.0" fill="none" stroke="#c4dbef" stroke-width="56" stroke-linejoin="miter"/>
+<rect x="40.0" y="122.0" width="280.0" height="280.0" fill="none" stroke="#9cc1e2" stroke-width="56" stroke-linejoin="miter"/>
+<rect x="152.0" y="234.0" width="56.0" height="56.0" fill="none" stroke="#7fa8cd" stroke-width="1.2"/>
+<rect x="96.0" y="178.0" width="168.0" height="168.0" fill="none" stroke="#7fa8cd" stroke-width="1.2"/>
+<rect x="40.0" y="122.0" width="280.0" height="280.0" fill="none" stroke="#7fa8cd" stroke-width="1.2"/>
+<circle cx="180" cy="262" r="7" fill="#1a1a1a" stroke="#fdfdfd" stroke-width="3"/>
+<text x="180.00" y="292.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="normal" text-anchor="middle" fill="#5b6168">camera</text>
+<path d="M 236,206 L 266,188" fill="none" stroke="#fdfdfd" stroke-width="6.0" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 236,206 L 266,188" fill="none" stroke="#5b6168" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="272.00" y="182.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="normal" text-anchor="start" fill="#7a818a">seam</text>
+<rect x="380" y="91" width="28" height="28" rx="4" fill="#e6eef9"/>
+<text x="422.00" y="110.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" font-weight="bold" text-anchor="start" fill="#7a818a">0-512 blocks</text>
+<text x="422.00" y="134.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="normal" text-anchor="start" fill="#7a818a">32 chunks, 8 per cell</text>
+<rect x="380" y="165" width="28" height="28" rx="4" fill="#c4dbef"/>
+<text x="422.00" y="184.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" font-weight="bold" text-anchor="start" fill="#7a818a">512-1536 blocks</text>
+<text x="422.00" y="208.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="normal" text-anchor="start" fill="#7a818a">96 chunks, 32 per cell</text>
+<rect x="380" y="239" width="28" height="28" rx="4" fill="#9cc1e2"/>
+<text x="422.00" y="258.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" font-weight="bold" text-anchor="start" fill="#7a818a">1536-4096 blocks</text>
+<text x="422.00" y="282.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="normal" text-anchor="start" fill="#7a818a">256 chunks, 128 per cell</text>
+<text x="380.00" y="330.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="normal" text-anchor="start" fill="#7a818a">Rings overlap by one cell.</text>
+<text x="380.00" y="362.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="normal" text-anchor="start" fill="#7a818a">The coarse ring is meshed first.</text>
+<text x="380.00" y="394.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="normal" text-anchor="start" fill="#7a818a">Not to scale.</text>
+</svg>

@@ -9,6 +9,7 @@ import style
 from style import save
 
 W, H = 700, 810
+RW, RH = 760, 452        # the ring figure is a square plus a key
 INK = style.INK
 MUTED = "#5b6168"
 
@@ -17,12 +18,16 @@ MUTED = "#5b6168"
 # page, and those keep the soft outline the other figures use.
 NODE = "#eaeef2"
 NODE_EDGE = "#a8b1bb"
+RULE = "#5b6168"
+# Text that sits on the page rather than on a filled node: a mid grey reads on
+# both themes, and unlike a black glyph with a white outline it stays crisp.
+PAGE = "#7a818a"
 
 # Anonymous Pro is monospaced at 0.6 em, which is enough to check the layout
 CHAR = 0.6
 
 
-def text(fig, x, y, s, size=20, anchor="start", fill=INK, casing=None,
+def text(fig, x, y, s, size=20, anchor="start", fill=PAGE, casing=0,
          weight="bold", rotate=None):
     fig.text(x, y, s, size=size, anchor=anchor, fill=fill, weight=weight,
              casing=casing, rotate=rotate)
@@ -33,17 +38,16 @@ def node(fig, x, y, w, h, title, note=None, strong=False):
     fig.add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" '
             f'fill="{NODE}" stroke="{INK if strong else NODE_EDGE}" '
             f'stroke-width="{2.4 if strong else 1.6}"/>')
-    text(fig, x + 16, y + h / 2 + 7, title, 22, casing=0)
+    text(fig, x + 16, y + h / 2 + 7, title, 22, fill=INK)
     if note:
         text(fig, x + w - 16, y + h / 2 + 6, note, 17, anchor="end", fill=MUTED,
-             weight="normal", casing=0)
+             weight="normal")
 
 
 def arrow(fig, a, b, width=2.6, colour=INK, head=13):
     fig.arrow(a, b, shaft=width, head=head, fill=colour, casing=2.5)
 
 
-RULE = "#5b6168"
 
 
 def cased_path(fig, d, colour=RULE, width=2.0, dash=None, fill="none"):
@@ -145,12 +149,74 @@ def pipeline():
             f'fill="none" stroke="{RULE}" stroke-width="1.8"/>')
     ly = H - 41
     arrow(fig, (48, ly), (104, ly), width=2.4, head=11)
-    text(fig, 116, ly + 6, "colour texture", 17, fill=MUTED, weight="normal")
+    text(fig, 116, ly + 6, "colour texture", 17, fill=PAGE, weight="normal")
     dashed(fig, (296, ly), (352, ly))
-    text(fig, 364, ly + 6, "depth copy", 17, fill=MUTED, weight="normal")
+    text(fig, 364, ly + 6, "depth copy", 17, fill=PAGE, weight="normal")
 
     save(fig.to_string(), "frame-pipeline.svg")
 
 
 if __name__ == "__main__":
     pipeline()
+
+
+# ---- cloud deck rings -------------------------------------------------
+# name, second line, tint, outer half-side in pixels
+RINGS = [
+    ("0-512 blocks", "32 chunks, 8 per cell", "#e6eef9", 56),
+    ("512-1536 blocks", "96 chunks, 32 per cell", "#c4dbef", 112),
+    ("1536-4096 blocks", "256 chunks, 128 per cell", "#9cc1e2", 168),
+]
+BAND = 56
+SEAM = "#7fa8cd"
+
+
+def cloud_rings():
+    """The deck seen from above: three rings with a growing cell.
+
+    The drawing is a schematic.  The outer ring really reaches eight times
+    further than the inner one, and to scale the middle ring would be a line.
+    """
+    fig = style.SVG(RW, RH)
+    cx, cy = 180, 262
+
+    # one stroked square per ring: the stroke is the band it covers
+    for _, _, tint, outer in RINGS:
+        half = outer - BAND / 2
+        fig.add(f'<rect x="{cx - half}" y="{cy - half}" width="{2 * half}" '
+                f'height="{2 * half}" fill="none" stroke="{tint}" '
+                f'stroke-width="{BAND}" stroke-linejoin="miter"/>')
+
+    # a line on every seam, or the bands read as one flat square
+    for _, _, _, outer in RINGS:
+        half = outer - BAND / 2
+        fig.add(f'<rect x="{cx - half}" y="{cy - half}" width="{2 * half}" '
+                f'height="{2 * half}" fill="none" stroke="{SEAM}" '
+                f'stroke-width="1.2"/>')
+
+    # the camera sits at the middle of the innermost ring
+    fig.add(f'<circle cx="{cx}" cy="{cy}" r="7" fill="{INK}" '
+            f'stroke="{style.CASING}" stroke-width="3"/>')
+    text(fig, cx, cy + 30, "camera", 19, anchor="middle", fill=MUTED,
+         weight="normal")
+
+    # the seam between the two inner rings, where they overlap by one cell
+    sx, sy = cx + RINGS[0][3], cy - RINGS[0][3]
+    cased_path(fig, f"M {sx},{sy} L {sx + 30},{sy - 18}")
+    text(fig, sx + 36, sy - 24, "seam", 19, fill=PAGE, weight="normal")
+
+    # the key
+    lx, ly = 380, 108
+    for i, (name, detail, tint, _) in enumerate(RINGS):
+        y = ly + i * 74
+        fig.add(f'<rect x="{lx}" y="{y - 17}" width="28" height="28" rx="4" '
+                f'fill="{tint}"/>')
+        text(fig, lx + 42, y + 2, name, 20)
+        text(fig, lx + 42, y + 26, detail, 19, fill=PAGE, weight="normal")
+
+    for i, line in enumerate(("Rings overlap by one cell.",
+                              "The coarse ring is meshed first.",
+                              "Not to scale.")):
+        text(fig, lx, 330 + i * 32, line, 19, fill=PAGE, weight="normal")
+
+    save(fig.to_string(), "cloud-rings.svg")

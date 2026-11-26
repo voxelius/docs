@@ -21,6 +21,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # figure -> the page directory it belongs to
 DESTINATIONS = {
     "frame-pipeline.svg": "src/engine",
+    "cloud-rings.svg": "src/engine",
     "bcoll-shapes.svg": "src/modding/formats",
     "bmodel-grid.svg": "src/modding/formats",
     "slabs-orientation.svg": "src/modding/libs",
@@ -36,6 +37,7 @@ for _n in facing.NAMES:
 
 FIGURES = {
     "frame-pipeline": arch.pipeline,
+    "cloud-rings": arch.cloud_rings,
     "bcoll-shapes": blocks.bcoll_shapes,
     "bmodel-grid": blocks.bmodel_grid,
     "slabs-orientation": blocks.slabs_orientation,
