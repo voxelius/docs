@@ -22,6 +22,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DESTINATIONS = {
     "frame-pipeline.svg": "src/engine",
     "cloud-rings.svg": "src/engine",
+    "boot-stages.svg": "src/engine",
+    "resource-life.svg": "src/engine",
     "bcoll-shapes.svg": "src/modding/formats",
     "bmodel-grid.svg": "src/modding/formats",
     "slabs-orientation.svg": "src/modding/libs",
@@ -38,6 +40,8 @@ for _n in facing.NAMES:
 FIGURES = {
     "frame-pipeline": arch.pipeline,
     "cloud-rings": arch.cloud_rings,
+    "boot-stages": arch.stages,
+    "resource-life": arch.resources,
     "bcoll-shapes": blocks.bcoll_shapes,
     "bmodel-grid": blocks.bmodel_grid,
     "slabs-orientation": blocks.slabs_orientation,

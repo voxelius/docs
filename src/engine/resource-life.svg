@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 520" width="700" height="520" style="max-width:100%;height:auto">
+<rect x="40" y="24" width="170" height="42" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="125.00" y="51.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">load(id)</text>
+<path d="M 123.70,66.00 L 123.70,77.00 L 126.30,77.00 L 126.30,66.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 118.50,77.00 L 125.00,90.00 L 131.50,77.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 123.70,66.00 L 123.70,77.00 L 126.30,77.00 L 126.30,66.00 Z" fill="#1a1a1a"/>
+<path d="M 118.50,77.00 L 125.00,90.00 L 131.50,77.00 Z" fill="#1a1a1a"/>
+<rect x="40" y="90" width="250" height="44" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="165.00" y="118.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">in the registry?</text>
+<path d="M 290.00,113.30 L 343.00,113.30 L 343.00,110.70 L 290.00,110.70 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 343.00,118.50 L 356.00,112.00 L 343.00,105.50 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 290.00,113.30 L 343.00,113.30 L 343.00,110.70 L 290.00,110.70 Z" fill="#1a1a1a"/>
+<path d="M 343.00,118.50 L 356.00,112.00 L 343.00,105.50 Z" fill="#1a1a1a"/>
+<text x="300.00" y="100.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="normal" text-anchor="start" fill="#5b6168">yes</text>
+<rect x="360" y="90" width="300" height="44" rx="6" fill="#eaeef2" stroke="#1a1a1a" stroke-width="2.2"/>
+<text x="510.00" y="118.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">return the handle</text>
+<path d="M 123.70,134.00 L 123.70,153.00 L 126.30,153.00 L 126.30,134.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 118.50,153.00 L 125.00,166.00 L 131.50,153.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 123.70,134.00 L 123.70,153.00 L 126.30,153.00 L 126.30,134.00 Z" fill="#1a1a1a"/>
+<path d="M 118.50,153.00 L 125.00,166.00 L 131.50,153.00 Z" fill="#1a1a1a"/>
+<text x="133.00" y="156.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" font-weight="normal" text-anchor="start" fill="#5b6168">no</text>
+<rect x="40" y="166" width="250" height="44" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="165.00" y="194.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">load_fn(path)</text>
+<path d="M 123.70,210.00 L 123.70,229.00 L 126.30,229.00 L 126.30,210.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 118.50,229.00 L 125.00,242.00 L 131.50,229.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 123.70,210.00 L 123.70,229.00 L 126.30,229.00 L 126.30,210.00 Z" fill="#1a1a1a"/>
+<path d="M 118.50,229.00 L 125.00,242.00 L 131.50,229.00 Z" fill="#1a1a1a"/>
+<rect x="40" y="242" width="250" height="46" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="165.00" y="271.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">store it in the registry</text>
+<path d="M 290,265 L 330,265 L 330,112" fill="none" stroke="#fdfdfd" stroke-width="6"/>
+<path d="M 290,265 L 330,265 L 330,112" fill="none" stroke="#5b6168" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="40.00" y="316.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="start" fill="#7a818a">RESFLAG_CACHE also pushes the handle into the cache,</text>
+<text x="40.00" y="338.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="start" fill="#7a818a">which then owns a reference of its own.</text>
+<rect x="40" y="380" width="320" height="100" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="60.00" y="412.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="bold" text-anchor="start" fill="#1a1a1a">soft purge</text>
+<text x="60.00" y="438.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="start" fill="#5b6168">runs after every frame</text>
+<text x="60.00" y="462.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="start" fill="#5b6168">drops what nothing else holds</text>
+<rect x="380" y="380" width="320" height="100" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="400.00" y="412.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="bold" text-anchor="start" fill="#1a1a1a">hard purge</text>
+<text x="400.00" y="438.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="start" fill="#5b6168">runs at shutdown</text>
+<text x="400.00" y="462.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="start" fill="#5b6168">drops everything, warns if in use</text>
+</svg>

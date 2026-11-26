@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 470" width="700" height="470" style="max-width:100%;height:auto">
+<text x="40.00" y="56.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" font-weight="bold" text-anchor="start" fill="#7a818a">init</text>
+<rect x="40" y="70" width="118" height="46" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="99.00" y="99.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">net</text>
+<rect x="168" y="70" width="118" height="46" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="227.00" y="99.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">mods</text>
+<rect x="296" y="70" width="118" height="46" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="355.00" y="99.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">render</text>
+<rect x="424" y="70" width="118" height="46" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="483.00" y="99.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">atlas</text>
+<rect x="552" y="70" width="118" height="46" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="611.00" y="99.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">gui</text>
+<text x="40.00" y="142.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="start" fill="#7a818a">the subsystems start, in this order</text>
+<text x="40.00" y="186.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" font-weight="bold" text-anchor="start" fill="#7a818a">config</text>
+<rect x="40" y="200" width="190" height="46" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="135.00" y="229.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">client.conf</text>
+<rect x="240" y="200" width="190" height="46" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="335.00" y="229.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">client.user.conf</text>
+<text x="40.00" y="272.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="start" fill="#7a818a">the two files are read here, in this order</text>
+<text x="40.00" y="316.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" font-weight="bold" text-anchor="start" fill="#7a818a">init_late</text>
+<rect x="40" y="330" width="118" height="46" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="99.00" y="359.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">video</text>
+<rect x="168" y="330" width="118" height="46" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="227.00" y="359.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">assets</text>
+<rect x="296" y="330" width="118" height="46" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="355.00" y="359.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">world</text>
+<rect x="424" y="330" width="118" height="46" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="483.00" y="359.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="bold" text-anchor="middle" fill="#1a1a1a">menu</text>
+<text x="40.00" y="402.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="start" fill="#7a818a">the values that other subsystems depend on are applied</text>
+<path d="M 17.00,70.00 L 17.00,364.00 L 19.00,364.00 L 19.00,70.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 12.00,364.00 L 18.00,376.00 L 24.00,364.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 17.00,70.00 L 17.00,364.00 L 19.00,364.00 L 19.00,70.00 Z" fill="#1a1a1a"/>
+<path d="M 12.00,364.00 L 18.00,376.00 L 24.00,364.00 Z" fill="#1a1a1a"/>
+<text x="40.00" y="446.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="start" fill="#7a818a">The stages run one by one, with the boot screen between them.</text>
+</svg>

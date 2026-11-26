@@ -22,6 +22,10 @@ The second store is the cvar host. It holds console variables and commands. A va
 
 The engine sets the defaults and flags first. Then it loads the config file. Then `init_late` applies the values that other subsystems depend on. The client loads both config files after every `init` and before `init_late`. The client runs these steps as one ordered list of boot stages, so it can draw a boot screen between them. The config stays a stage between the `init` group and the `init_late` group.
 
+The figure shows the three phases. The client reads `client.conf` and then `client.user.conf` between them.
+
+![The boot stages: init, config and init_late, in the order the client runs them](boot-stages.svg)
+
 A server-owned variable can use `FCVAR_REPLICATED`. The server sends its value to clients as a shadow. A client cannot overwrite the value directly while connected. `FCVAR_ADMIN` marks a command or a variable as operator-only. Only a remote caller that the server considers an operator may run or change it. The engine trusts a context without a client ID. The client console forwards an operator's write to a shadowed variable to the server, and the server applies the value. The console `help` command lists every variable.
 
 ## Resources
@@ -29,6 +33,10 @@ A server-owned variable can use `FCVAR_REPLICATED`. The server sends its value t
 Resource management is the engine's one loading and caching path for assets that mods reference. A resource type registers one loader for itself. After that, any code can request a resource of that type by identifier. The engine turns the identifier into a file path and looks it up. If the resource is already loaded, the request returns the existing instance. Otherwise, the request triggers a new load, and the engine keeps the result for later requests. A request can also ask the engine to hold a permanent reference to the result. This lets the resource survive even when nothing else holds it.
 
 Purging follows a fixed memory policy, not a one-off cleanup call. A soft purge drops only the resources that nothing references anymore. It normally runs after every frame. A hard purge drops every resource regardless of use, and warns about each one still in use. That warning is a sign: something still holds memory the engine just freed.
+
+The figure shows the request path and the two purges.
+
+![A resource request, the registry, and the soft and hard purges](resource-life.svg)
 
 ## Threading
 

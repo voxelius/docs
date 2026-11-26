@@ -1,4 +1,4 @@
-"""Architecture diagrams: the frame pipeline of the rendering page."""
+"""Architecture diagrams: the frame pipeline, the cloud rings and the core page."""
 
 import os
 import sys
@@ -220,3 +220,95 @@ def cloud_rings():
         text(fig, lx, 330 + i * 32, line, 19, fill=PAGE, weight="normal")
 
     save(fig.to_string(), "cloud-rings.svg")
+
+
+# ---- core.md ---------------------------------------------------------
+def stage_box(fig, x, y, w, h, title, size=17, strong=False):
+    """A box with its label in the middle."""
+    fig.add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="6" '
+            f'fill="{NODE}" stroke="{INK if strong else NODE_EDGE}" '
+            f'stroke-width="{2.2 if strong else 1.6}"/>')
+    text(fig, x + w / 2, y + h / 2 + 6, title, size, anchor="middle", fill=INK)
+
+
+def stages():
+    """init -> config -> init_late, as the client registers them."""
+    W, H = 700, 470
+    fig = style.SVG(W, H)
+
+    # the config stage names real files, so its boxes are wider
+    rows = [
+        ("init", [118, 118, 118, 118, 118], ["net", "mods", "render", "atlas", "gui"],
+         "the subsystems start, in this order"),
+        ("config", [190, 190], ["client.conf", "client.user.conf"],
+         "the two files are read here, in this order"),
+        ("init_late", [118, 118, 118, 118], ["video", "assets", "world", "menu"],
+         "the values that other subsystems depend on are applied"),
+    ]
+    bh, gap = 46, 10
+    x0, y, pitch = 40, 70, 130
+    for r, (phase, widths, items, note) in enumerate(rows):
+        top = y + r * pitch
+        text(fig, x0, top - 14, phase, 20, fill=PAGE)
+        x = x0
+        for w, item in zip(widths, items):
+            stage_box(fig, x, top, w, bh, item)
+            x += w + gap
+        text(fig, x0, top + bh + 26, note, 15, fill=PAGE, weight="normal")
+
+    # one spine on the left, in the margin: arrows between the rows would run
+    # through the note under each row
+    arrow(fig, (18, y), (18, y + 2 * pitch + bh), width=2.0, head=12)
+
+    text(fig, x0, H - 24,
+         "The stages run one by one, with the boot screen between them.",
+         15, fill=PAGE, weight="normal")
+
+    save(fig.to_string(), "boot-stages.svg")
+
+
+def resources():
+    """Request, cache and the two purges."""
+    W, H = 700, 520
+    fig = style.SVG(W, H)
+
+    stage_box(fig, 40, 24, 170, 42, "load(id)")
+    arrow(fig, (125, 66), (125, 90))
+    stage_box(fig, 40, 90, 250, 44, "in the registry?")
+    arrow(fig, (290, 112), (356, 112))
+    text(fig, 300, 100, "yes", 14, fill=MUTED, weight="normal")
+    fig.add(f'<rect x="360" y="90" width="300" height="44" rx="6" '
+            f'fill="{NODE}" stroke="{INK}" stroke-width="2.2"/>')
+    text(fig, 510, 118, "return the handle", 17, anchor="middle", fill=INK)
+    arrow(fig, (125, 134), (125, 166))
+    text(fig, 133, 156, "no", 14, fill=MUTED, weight="normal")
+
+    stage_box(fig, 40, 166, 250, 44, "load_fn(path)")
+    arrow(fig, (125, 210), (125, 242))
+    stage_box(fig, 40, 242, 250, 46, "store it in the registry")
+
+    # both paths end at the same return
+    fig.add(f'<path d="M 290,265 L 330,265 L 330,112" fill="none" '
+            f'stroke="{style.CASING}" stroke-width="6"/>')
+    fig.add(f'<path d="M 290,265 L 330,265 L 330,112" fill="none" stroke="{RULE}" '
+            f'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>')
+
+    text(fig, 40, 316, "RESFLAG_CACHE also pushes the handle into the cache,",
+         15, fill=PAGE, weight="normal")
+    text(fig, 40, 338, "which then owns a reference of its own.", 15, fill=PAGE,
+         weight="normal")
+
+    # the two purges
+    for i, (title, when, what) in enumerate((
+            ("soft purge", "runs after every frame",
+             "drops what nothing else holds"),
+            ("hard purge", "runs at shutdown",
+             "drops everything, warns if in use"))):
+        x = 40 + i * 340
+        fig.add(f'<rect x="{x}" y="380" width="320" height="100" rx="6" '
+                f'fill="{NODE}" stroke="{NODE_EDGE}" stroke-width="1.6"/>')
+        text(fig, x + 20, 412, title, 19, fill=INK)
+        text(fig, x + 20, 438, when, 15, fill=MUTED, weight="normal")
+        text(fig, x + 20, 462, what, 15, fill=MUTED, weight="normal")
+
+    save(fig.to_string(), "resource-life.svg")
