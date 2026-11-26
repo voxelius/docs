@@ -2,7 +2,7 @@
 
     python figsrc/render.py [name ...]
 
-With no arguments it renders all fifteen and writes each one next to its page.
+With no arguments it renders every figure and writes each one next to its page.
 """
 
 import os
@@ -10,6 +10,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
+import arch
 import blocks
 import charts
 import facing
@@ -19,6 +20,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # figure -> the page directory it belongs to
 DESTINATIONS = {
+    "frame-pipeline.svg": "src/engine",
     "bcoll-shapes.svg": "src/modding/formats",
     "bmodel-grid.svg": "src/modding/formats",
     "slabs-orientation.svg": "src/modding/libs",
@@ -33,6 +35,7 @@ for _n in facing.NAMES:
     DESTINATIONS[f"facing-{_n}.svg"] = "src/modding/api"
 
 FIGURES = {
+    "frame-pipeline": arch.pipeline,
     "bcoll-shapes": blocks.bcoll_shapes,
     "bmodel-grid": blocks.bmodel_grid,
     "slabs-orientation": blocks.slabs_orientation,

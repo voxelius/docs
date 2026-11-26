@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 866" width="700" height="866" style="max-width:100%;height:auto">
+<rect x="30" y="20" width="660" height="56" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="46.00" y="55.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="bold" text-anchor="start" fill="#1a1a1a">Frame</text>
+<text x="674.00" y="54.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="end" fill="#5b6168">five passes</text>
+<path d="M 52,76 L 52,409.0" fill="none" stroke="#fdfdfd" stroke-width="6.0" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 52,76 L 52,409.0" fill="none" stroke="#5b6168" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 52.00,138.00 L 76.00,138.00 L 76.00,136.00 L 52.00,136.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 76.00,142.00 L 86.00,137.00 L 76.00,132.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 52.00,138.00 L 76.00,138.00 L 76.00,136.00 L 52.00,136.00 Z" fill="#1a1a1a"/>
+<path d="M 76.00,142.00 L 86.00,137.00 L 76.00,132.00 Z" fill="#1a1a1a"/>
+<rect x="90" y="110" width="510" height="54" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="106.00" y="144.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="bold" text-anchor="start" fill="#1a1a1a">Diffuse</text>
+<text x="584.00" y="143.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="end" fill="#5b6168">opaque + depth</text>
+<path d="M 52.00,206.00 L 76.00,206.00 L 76.00,204.00 L 52.00,204.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 76.00,210.00 L 86.00,205.00 L 76.00,200.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 52.00,206.00 L 76.00,206.00 L 76.00,204.00 L 52.00,204.00 Z" fill="#1a1a1a"/>
+<path d="M 76.00,210.00 L 86.00,205.00 L 76.00,200.00 Z" fill="#1a1a1a"/>
+<rect x="90" y="178" width="510" height="54" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="106.00" y="212.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="bold" text-anchor="start" fill="#1a1a1a">Clouds</text>
+<text x="584.00" y="211.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="end" fill="#5b6168">borrows depth</text>
+<path d="M 52.00,274.00 L 76.00,274.00 L 76.00,272.00 L 52.00,272.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 76.00,278.00 L 86.00,273.00 L 76.00,268.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 52.00,274.00 L 76.00,274.00 L 76.00,272.00 L 52.00,272.00 Z" fill="#1a1a1a"/>
+<path d="M 76.00,278.00 L 86.00,273.00 L 76.00,268.00 Z" fill="#1a1a1a"/>
+<rect x="90" y="246" width="510" height="54" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="106.00" y="280.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="bold" text-anchor="start" fill="#1a1a1a">Alpha</text>
+<text x="584.00" y="279.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="end" fill="#5b6168">leaves, glass</text>
+<path d="M 52.00,342.00 L 76.00,342.00 L 76.00,340.00 L 52.00,340.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 76.00,346.00 L 86.00,341.00 L 76.00,336.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 52.00,342.00 L 76.00,342.00 L 76.00,340.00 L 52.00,340.00 Z" fill="#1a1a1a"/>
+<path d="M 76.00,346.00 L 86.00,341.00 L 76.00,336.00 Z" fill="#1a1a1a"/>
+<rect x="90" y="314" width="510" height="54" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="106.00" y="348.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="bold" text-anchor="start" fill="#1a1a1a">Fluid</text>
+<text x="584.00" y="347.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="end" fill="#5b6168">water, lava</text>
+<path d="M 52.00,410.00 L 76.00,410.00 L 76.00,408.00 L 52.00,408.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 76.00,414.00 L 86.00,409.00 L 76.00,404.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 52.00,410.00 L 76.00,410.00 L 76.00,408.00 L 52.00,408.00 Z" fill="#1a1a1a"/>
+<path d="M 76.00,414.00 L 86.00,409.00 L 76.00,404.00 Z" fill="#1a1a1a"/>
+<rect x="90" y="382" width="510" height="54" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="106.00" y="416.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="bold" text-anchor="start" fill="#1a1a1a">Precip</text>
+<text x="584.00" y="415.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="end" fill="#5b6168">camera quads</text>
+<path d="M 600.0,137.0 L 626.0,137.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 600.0,137.0 L 626.0,137.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
+<path d="M 600.0,205.0 L 626.0,205.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 600.0,205.0 L 626.0,205.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
+<path d="M 600.0,273.0 L 626.0,273.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 600.0,273.0 L 626.0,273.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
+<path d="M 600.0,341.0 L 626.0,341.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 600.0,341.0 L 626.0,341.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
+<path d="M 600.0,409.0 L 626.0,409.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 600.0,409.0 L 626.0,409.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
+<path d="M 626.0,137.0 L 626.0,409.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 626.0,137.0 L 626.0,409.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
+<text x="642.00" y="273.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="middle" transform="rotate(-90 642.00 273.00)" fill="none" stroke="#cfd3d8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">depth copy</text>
+<text x="642.00" y="273.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="middle" transform="rotate(-90 642.00 273.00)" fill="#5b6168">depth copy</text>
+<path d="M 90,476 L 90,488 L 600,488 L 600,476" fill="none" stroke="#fdfdfd" stroke-width="6.0" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 90,476 L 90,488 L 600,488 L 600,476" fill="none" stroke="#5b6168" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 343.70,488.00 L 343.70,505.00 L 346.30,505.00 L 346.30,488.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 338.50,505.00 L 345.00,518.00 L 351.50,505.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 343.70,488.00 L 343.70,505.00 L 346.30,505.00 L 346.30,488.00 Z" fill="#1a1a1a"/>
+<path d="M 338.50,505.00 L 345.00,518.00 L 351.50,505.00 Z" fill="#1a1a1a"/>
+<rect x="90" y="518" width="510" height="148" rx="6" fill="#eaeef2" stroke="#1a1a1a" stroke-width="2.4"/>
+<text x="345.00" y="550.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Composite</text>
+<text x="345.00" y="578.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="middle" fill="#5b6168">one full-screen triangle</text>
+<text x="345.00" y="596.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="middle" fill="#5b6168">sorts the layers by depth</text>
+<text x="345.00" y="614.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="middle" fill="#5b6168">blends them far to near</text>
+<text x="345.00" y="632.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="middle" fill="#5b6168">precipitation over the result</text>
+<text x="345.00" y="650.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" font-weight="normal" text-anchor="middle" fill="#5b6168">renders at the internal resolution</text>
+<path d="M 343.70,666.00 L 343.70,675.00 L 346.30,675.00 L 346.30,666.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 338.50,675.00 L 345.00,688.00 L 351.50,675.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 343.70,666.00 L 343.70,675.00 L 346.30,675.00 L 346.30,666.00 Z" fill="#1a1a1a"/>
+<path d="M 338.50,675.00 L 345.00,688.00 L 351.50,675.00 Z" fill="#1a1a1a"/>
+<rect x="90" y="688" width="280" height="92" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="230.00" y="720.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Backbuffer</text>
+<text x="230.00" y="744.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="normal" text-anchor="middle" fill="#5b6168">window size</text>
+<text x="230.00" y="764.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="normal" text-anchor="middle" fill="#5b6168">nearest upscale</text>
+<rect x="430" y="688" width="170" height="92" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
+<text x="515.00" y="724.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="bold" text-anchor="middle" fill="#1a1a1a">ImGui</text>
+<text x="515.00" y="748.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="16" font-weight="normal" text-anchor="middle" fill="#5b6168">on top</text>
+<path d="M 430.00,732.70 L 387.00,732.70 L 387.00,735.30 L 430.00,735.30 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 387.00,727.50 L 374.00,734.00 L 387.00,740.50 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 430.00,732.70 L 387.00,732.70 L 387.00,735.30 L 430.00,735.30 Z" fill="#1a1a1a"/>
+<path d="M 387.00,727.50 L 374.00,734.00 L 387.00,740.50 Z" fill="#1a1a1a"/>
+<rect x="28" y="796" width="470" height="46" rx="8" fill="none" stroke="#fdfdfd" stroke-width="5"/>
+<rect x="30" y="798" width="466" height="42" rx="8" fill="none" stroke="#5b6168" stroke-width="1.8"/>
+<path d="M 48.00,826.20 L 93.00,826.20 L 93.00,823.80 L 48.00,823.80 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 93.00,830.50 L 104.00,825.00 L 93.00,819.50 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 48.00,826.20 L 93.00,826.20 L 93.00,823.80 L 48.00,823.80 Z" fill="#1a1a1a"/>
+<path d="M 93.00,830.50 L 104.00,825.00 L 93.00,819.50 Z" fill="#1a1a1a"/>
+<text x="116.00" y="831.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="start" fill="none" stroke="#cfd3d8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">colour texture</text>
+<text x="116.00" y="831.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="start" fill="#5b6168">colour texture</text>
+<path d="M 296.0,825.0 L 352.0,825.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 296.0,825.0 L 352.0,825.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
+<text x="364.00" y="831.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="start" fill="none" stroke="#cfd3d8" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">depth copy</text>
+<text x="364.00" y="831.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="start" fill="#5b6168">depth copy</text>
+</svg>

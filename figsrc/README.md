@@ -18,6 +18,7 @@ Needs Python 3 and `numpy`. Nothing else: the SVG is written as text.
 |`render.py`|Entry point. Maps a figure to the page directory it belongs to|
 |`style.py`|The SVG writer, the palette and the font stack|
 |`iso.py`|Isometric camera, box geometry, painter's algorithm, callout helpers|
+|`arch.py`|Architecture diagrams: the frame pipeline|
 |`blocks.py`|Block shapes, slab and log orientation, the hit target, the model grid|
 |`charts.py`|The climate square, the flow levels, the precipitation bands|
 |`facing.py`|The six `facing-*` illustrations of the block API page|

@@ -34,6 +34,10 @@ A frame renders into five separate layers, each with its own color and depth tar
 - **Fluid** - fluid surfaces, such as water and lava.
 - **Precip** - the precipitation columns, drawn as camera-facing textured quads.
 
+The figure shows the five layers, the composite and the window. The dashed arrows are the copies of the diffuse depth.
+
+![The frame pipeline: five layers, the composite, the backbuffer and ImGui](frame-pipeline.svg)
+
 The cloud, alpha, fluid and precip layers each reuse the diffuse layer's depth buffer for depth testing. The client copies that depth buffer in before each layer renders. This way, translucent and fluid geometry test correctly against opaque geometry. Each layer still writes into its own separate color and depth targets, instead of overwriting the diffuse layer.
 
 A composite shader then draws one full-screen triangle. It reads every layer's color texture and sorts the diffuse, alpha, fluid and cloud layers that touched a pixel by depth. It blends them from the farthest to the nearest, then lays the precipitation layer over the result. The client blits that image onto the real window-sized backbuffer. It uses nearest-neighbour filtering to keep the pixelated look. The compose target is 8-bit, so the shader adds half a level of noise to its output. Without that noise a slow fade, such as the cloud deck thinning into the fog, lands on the 255 available levels and breaks into bands. Each channel then rounds at its own step, so those bands pick up a green or magenta tint instead of reading as a brightness ramp.
