@@ -3,3 +3,14 @@ table td,
 table thead th {
     padding: 3px 10px;
 }
+
+/* A zoomed image sits on a grey plate, which washes out the figures: they carry
+   their own light plates and a neutral grey text, so a dark backdrop reads better.
+   The page behind is dimmed harder too, so it does not show through the gaps. */
+.content .checkbox-img:checked ~ .img-wrapper {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.content .checkbox-img:checked ~ .img-wrapper > img {
+    background: rgba(0, 0, 0, 0.9);
+}
