@@ -60,9 +60,6 @@ The engine evaluates scatter entries in list order. If several entries pass the 
 |`feature`|`string`|yes|N/D|Feature to place|
 |`chance`|`number`|no|0.5|Chance of a placement attempt per column|
 |`need_above`|`integer[]`|no|`{}`|List of `blocks.TAG_XXXX` constants. The block above the origin must have at least one listed tag|
-
-> **NOTE:** this is planned. The tag test runs only for columns inside chunk Y 0, where the engine reads no block
-> storage, so a tag list does not filter placements yet.
 |`need_below`|`integer[]`|no|`{}`|List of `blocks.TAG_XXXX` constants. The origin block (surface) must have at least one listed tag|
 |`padding`|`integer`|no|0|Minimum block clearance between this feature's bounding box and another placement in the same padding family. The engine uses expanded-box separation: it grows the current box by `padding` blocks, then tests for intersection|
 |`group`|`string`|no|`""`|Padding family name. Entries with the same non-empty `group` share padding. An empty group pads only against the same scatter entry|
