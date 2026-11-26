@@ -152,8 +152,6 @@ Returns the numeric block ID.
 |`fluid_faces`|`integer`|no|`0`|Bitmask of faces a fluid may enter or leave this variant through, made of `blocks.FACE_*` bits. `0` means no face|
 |`fluid_falling`|`boolean`|no|`false`|If true, the engine treats the fluid in this cell as falling. The cell uses the flowing texture at every level, and the flow points down|
 |`health`|`integer`|no|`0`|Base hit points needed to break the block|
-
-> **NOTE:** this is planned. The engine stores `health`, but nothing reads it yet: a hit clears the cell at once.
 |`sound`|`string`|no|N/D|Sound set for this block|
 |`emission`|`integer`|no|`0`|Emission light value, from `0` to `15`. The engine clamps values outside the range|
 |`dissipation`|`integer`|no|`0`|Opacity of the block, from `0` to `15`. Light loses this many levels when it passes through. The engine clamps values outside the range. The engine treats a `RENDER_SOLID` block with `0` dissipation as fully opaque. The block absorbs light across every cell face that its collision bounds touch, so a shape whose bounds fill the cell is opaque even when its geometry has a notch|
@@ -243,7 +241,7 @@ drops = {
 }
 ```
 
-> **NOTE:** this is planned. The engine stores the entries and their conditions, but nothing selects a drop yet, and no effect state exists that a `when` clause could match.
+> **NOTE:** this is planned. The engine stores the entries and their conditions, but nothing selects a drop yet, and no effect state exists that a `when` clause could match.  
 
 ### States table
 
@@ -258,7 +256,7 @@ states = {
 
 The engine stores blockstate values as hashed strings. You can write any value via `world.set_state`. `hint` does not restrict this at runtime.
 
-> **NOTE:** this is planned. `hint` is stored but never checked, so a typo such as `orientation = "bottum"` passes without a warning. The check is meant to compare every `when` clause against the union of the `hint` lists and warn at load time.
+> **NOTE:** this is planned. `hint` is stored but never checked, so a typo such as `orientation = "bottum"` passes without a warning. The check is meant to compare every `when` clause against the union of the `hint` lists and warn at load time.  
 
 ### State object
 
