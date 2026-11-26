@@ -80,7 +80,9 @@ def figure(name):
         return s
 
     geom, pr, H = iso.render(build, CAM, width=1100, margin=0.10, aspect=1.0)
-    fig = svg.SVG(1100, H, display=140)
+    # the table gives this figure about a third of the column, and the labels
+    # on the faces have to stay readable at that size
+    fig = svg.SVG(1100, H, display=250)
     fig.parts.extend(geom)
     for axis, _, text in FACES:
         if not visible(axis, R):
