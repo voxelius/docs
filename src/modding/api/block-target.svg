@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 880" width="1100" height="880" style="max-width:100%;height:auto">
+<path d="M 734.33,400.81 L 550.00,297.74 L 365.67,400.81 L 550.00,503.89 Z" fill="#969ba2" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 550.00,720.00 L 734.33,616.92 L 734.33,400.81 L 550.00,503.89 Z" fill="#6f7378" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 365.67,616.92 L 550.00,720.00 L 550.00,503.89 L 365.67,400.81 Z" fill="#66696e" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 377.32,171.62 L 488.79,384.99 L 494.99,381.75 L 383.52,168.38 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 482.14,388.47 L 502.07,402.87 L 501.64,378.28 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 377.32,171.62 L 488.79,384.99 L 494.99,381.75 L 383.52,168.38 Z" fill="#1a1a1a"/>
+<path d="M 482.14,388.47 L 502.07,402.87 L 501.64,378.28 Z" fill="#1a1a1a"/>
+<path d="M 505.57,402.87 L 505.57,303.85 L 498.57,303.85 L 498.57,402.87 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 513.07,303.85 L 502.07,281.85 L 491.07,303.85 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
+<path d="M 505.57,402.87 L 505.57,303.85 L 498.57,303.85 L 498.57,402.87 Z" fill="#1a1a1a"/>
+<path d="M 513.07,303.85 L 502.07,281.85 L 491.07,303.85 Z" fill="#1a1a1a"/>
+<circle cx="502.0746492031569" cy="402.87330423937533" r="8" fill="#e0524e" stroke="#ffffff" stroke-width="3"/>
+<rect x="303.92" y="152.25" width="66.50" height="35.50" rx="4" fill="#ffffff" fill-opacity="0.92"/>
+<text x="360.42" y="176.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="end" fill="#1a1a1a">ray</text>
+<path d="M 502.07,342.36 L 754.33,326.36" fill="none" stroke="#e0524e" stroke-width="3.2" stroke-linecap="round"/>
+<rect x="750.33" y="296.61" width="113.00" height="35.50" rx="4" fill="#ffffff" fill-opacity="0.92"/>
+<text x="760.33" y="320.36" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="start" fill="#1a1a1a">normal</text>
+<path d="M 502.07,402.87 L 754.33,392.87" fill="none" stroke="#e0524e" stroke-width="3.2" stroke-linecap="round"/>
+<rect x="750.33" y="379.12" width="299.00" height="35.50" rx="4" fill="#ffffff" fill-opacity="0.92"/>
+<text x="760.33" y="402.87" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="start" fill="#1a1a1a">point (lx, ly, lz)</text>
+<circle cx="734.3282722955503" cy="616.9249382233047" r="8" fill="#e0524e" stroke="#ffffff" stroke-width="3"/>
+<path d="M 734.33,616.92 L 347.67,710.00" fill="none" stroke="#e0524e" stroke-width="3.2" stroke-linecap="round"/>
+<rect x="68.17" y="696.25" width="283.50" height="35.50" rx="4" fill="#ffffff" fill-opacity="0.92"/>
+<text x="341.67" y="720.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="end" fill="#1a1a1a">bpos (bx, by, bz)</text>
+<circle cx="550.0" cy="483.27185242519766" r="8" fill="#e0524e" stroke="#ffffff" stroke-width="3"/>
+<path d="M 550.00,483.27 L 347.67,483.27" fill="none" stroke="#e0524e" stroke-width="3.2" stroke-linecap="round"/>
+<rect x="99.17" y="471.52" width="252.50" height="35.50" rx="4" fill="#ffffff" fill-opacity="0.92"/>
+<text x="341.67" y="495.27" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="end" fill="#1a1a1a">face = FACE_TOP</text>
+</svg>

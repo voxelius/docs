@@ -47,6 +47,10 @@ Two drifting noise grids form the two axes of a climate square:
 - the types share the point with a soft blend that drops off quickly away from the nearest target. A type owns its cell almost entirely. Only a narrow band mixes two types, so a change of type is a gradient without a world-wide haze
 - the share also picks the sky tint, the visibility and the light. `intensity` does not dilute that mix, it only scales the cloud coverage
 
+The figure shows four targets in the climate square. Each target owns the point nearest to it, and the sample point takes the type of its target.
+
+![Four weather targets in a two-axis climate square, the cells they own, a sample point and the drift](weather-climate-square.svg)
+
 Because targets are points rather than positions on one ordered line, a storm can border a clear sky directly. Where the types sit relative to each other is a data decision, not an engine one. In the shipped content the storm sits next to the clear and the rain targets. A front can then bring it in without an overcast or rainy day in between.
 
 The square drifts with the world's wind. The wind direction and speed come from the weather seed. A type does not set them. The field is two-dimensional and does not depend on height.

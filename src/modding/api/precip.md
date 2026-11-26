@@ -71,6 +71,10 @@ precip.add("snow", {
 - `fade = 0` makes a hard cut at the edge
 - `min` must not exceed `max`, and `fade` must not be negative
 
+The figure shows two bands over temperature. The weight is 1 inside the band and falls to 0 across the fade.
+
+![Two precipitation bands over temperature, each with a flat top and a fade at its edges](precip-fade.svg)
+
 The default temperature band is `-1000` to `1000`. The default humidity band is `0` to `1`. A type that names no band always fits that axis.
 
 `humidity` is a fraction from 0 to 1. The engine divides the humidity percentage of a biome by 100 before it compares them.

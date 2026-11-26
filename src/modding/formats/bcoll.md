@@ -21,6 +21,10 @@ Block collisions live under: `namespace:collisions/block`
 
 ## Examples
 
+The figure shows the three shapes that follow. Each shape fills its cell in a different way.
+
+![A cube, a slab and a staircase, one in each cell](bcoll-shapes.svg)
+
 ### Example: cube collision
 
 ```json

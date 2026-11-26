@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 425" width="1100" height="425" style="max-width:100%;height:auto">
+<path d="M 1008.33,249.42 L 870.04,180.27 L 731.74,249.42 L 870.04,318.57 Z" fill="#eceef0" stroke="#1a1a1a" stroke-width="3.0" stroke-linejoin="round"/>
+<path d="M 368.26,249.42 L 229.96,180.27 L 91.67,249.42 L 229.96,318.57 Z" fill="#eceef0" stroke="#1a1a1a" stroke-width="3.0" stroke-linejoin="round"/>
+<path d="M 688.30,249.42 L 550.00,180.27 L 411.70,249.42 L 550.00,318.57 Z" fill="#eceef0" stroke="#1a1a1a" stroke-width="3.0" stroke-linejoin="round"/>
+<path d="M 995.76,169.35 L 870.04,106.49 L 744.32,169.35 L 870.04,232.21 Z" fill="#969ba2" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 675.72,169.35 L 550.00,106.49 L 424.28,169.35 L 550.00,232.21 Z" fill="#969ba2" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 870.04,325.50 L 1008.33,256.35 L 1008.33,249.42 L 870.04,318.57 Z" fill="#eceef0" stroke="#1a1a1a" stroke-width="3.0" stroke-linejoin="round"/>
+<path d="M 731.74,256.35 L 870.04,325.50 L 870.04,318.57 L 731.74,249.42 Z" fill="#eceef0" stroke="#1a1a1a" stroke-width="3.0" stroke-linejoin="round"/>
+<path d="M 229.96,325.50 L 368.26,256.35 L 368.26,249.42 L 229.96,318.57 Z" fill="#eceef0" stroke="#1a1a1a" stroke-width="3.0" stroke-linejoin="round"/>
+<path d="M 550.00,325.50 L 688.30,256.35 L 688.30,249.42 L 550.00,318.57 Z" fill="#eceef0" stroke="#1a1a1a" stroke-width="3.0" stroke-linejoin="round"/>
+<path d="M 91.67,256.35 L 229.96,325.50 L 229.96,318.57 L 91.67,249.42 Z" fill="#eceef0" stroke="#1a1a1a" stroke-width="3.0" stroke-linejoin="round"/>
+<path d="M 411.70,256.35 L 550.00,325.50 L 550.00,318.57 L 411.70,249.42 Z" fill="#eceef0" stroke="#1a1a1a" stroke-width="3.0" stroke-linejoin="round"/>
+<path d="M 870.04,309.20 L 995.76,246.34 L 995.76,169.35 L 870.04,232.21 Z" fill="#6f7378" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 550.00,309.20 L 675.72,246.34 L 675.72,169.35 L 550.00,232.21 Z" fill="#6f7378" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 424.28,246.34 L 550.00,309.20 L 550.00,232.21 L 424.28,169.35 Z" fill="#66696e" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 744.32,246.34 L 870.04,309.20 L 870.04,232.21 L 744.32,169.35 Z" fill="#66696e" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 355.68,92.36 L 229.96,29.50 L 104.24,92.36 L 229.96,155.22 Z" fill="#969ba2" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 229.96,309.20 L 355.68,246.34 L 355.68,92.36 L 229.96,155.22 Z" fill="#6f7378" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 104.24,246.34 L 229.96,309.20 L 229.96,155.22 L 104.24,92.36 Z" fill="#66696e" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 995.76,92.36 L 932.90,60.93 L 807.18,123.79 L 870.04,155.22 Z" fill="#969ba2" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 870.04,232.21 L 995.76,169.35 L 995.76,92.36 L 870.04,155.22 Z" fill="#6f7378" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<path d="M 807.18,200.78 L 870.04,232.21 L 870.04,155.22 L 807.18,123.79 Z" fill="#66696e" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="round"/>
+<rect x="180.28" y="338.36" width="99.36" height="45.44" rx="4" fill="#ffffff" fill-opacity="0.92"/>
+<text x="229.96" y="368.76" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="32" font-weight="bold" text-anchor="middle" fill="#1a1a1a">cube</text>
+<rect x="500.32" y="338.36" width="99.36" height="45.44" rx="4" fill="#ffffff" fill-opacity="0.92"/>
+<text x="550.00" y="368.76" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="32" font-weight="bold" text-anchor="middle" fill="#1a1a1a">slab</text>
+<rect x="800.52" y="338.36" width="139.04" height="45.44" rx="4" fill="#ffffff" fill-opacity="0.92"/>
+<text x="870.04" y="368.76" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="32" font-weight="bold" text-anchor="middle" fill="#1a1a1a">stairs</text>
+</svg>

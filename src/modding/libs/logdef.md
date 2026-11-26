@@ -35,4 +35,8 @@ A wrapper around `blocks.add` that defines a log block family.
 
 #### Notes
 
+The figure shows one log with the grain along the Z, the X and the Y axis. The rings show on the cut face.
+
+![One log in three orientations, with the end grain on a different face each time](logs-orientation.svg)
+
 - The registered block family gets an `orientation` state and variants for `north`, `east`, and `up`.

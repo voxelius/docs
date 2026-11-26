@@ -213,12 +213,12 @@ Each texture slot can have a mask texture that the engine uses for certain purpo
 
 |Value|Rotation|Image|
 |----|----|----|
-|`blocks.FACE_NORTH`|None|![](facing-north.png)|
-|`blocks.FACE_SOUTH`|180 degrees around Y|![](facing-south.png)|
-|`blocks.FACE_EAST`|+90 degrees around Y|![](facing-east.png)|
-|`blocks.FACE_WEST`|-90 degrees around Y|![](facing-west.png)|
-|`blocks.FACE_TOP`|-90 degrees around X|![](facing-top.png)|
-|`blocks.FACE_BOTTOM`|+90 degrees around X|![](facing-bottom.png)|
+|`blocks.FACE_NORTH`|None|![](facing-north.svg)|
+|`blocks.FACE_SOUTH`|180 degrees around Y|![](facing-south.svg)|
+|`blocks.FACE_EAST`|+90 degrees around Y|![](facing-east.svg)|
+|`blocks.FACE_WEST`|-90 degrees around Y|![](facing-west.svg)|
+|`blocks.FACE_TOP`|-90 degrees around X|![](facing-top.svg)|
+|`blocks.FACE_BOTTOM`|+90 degrees around X|![](facing-bottom.svg)|
 
 ### Drops table
 
@@ -284,6 +284,10 @@ variants = {
 ### Target table
 
 Some callbacks pass a `target` table for the block the initiator looked at (the raycast hit). In `on_place`, this is the block adjacent to the placement cell.
+
+The figure shows these fields on one hit against the top face.
+
+![A ray that hits the top face of a block, with the hit point, the normal and the block position marked](block-target.svg)
 
 |Field|Type|Description|
 |----|----|----|

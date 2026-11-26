@@ -11,6 +11,10 @@ Defines the direction in which the fluid level decreases.
 |`fluids.GRAVITY_DOWN`|The fluid sticks to the bottom face of a block|
 |`fluids.GRAVITY_UP`|The fluid sticks to the top face of a block|
 
+The figure shows the two cases. The fluid rests on the bottom face or on the top face of its cell.
+
+![A fluid on the bottom of a cell and a fluid hanging from the top](fluids-gravity.svg)
+
 ## Constant: null fluid
 
 `fluids.NULL_FLUID` is an empty or non-existent fluid ID.

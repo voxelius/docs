@@ -94,6 +94,10 @@ A function that implements placement logic for fluid blocks.
 
 ### Behaviour
 
+The figure shows the level of a fluid that spreads from one source. The level falls by one for each block of flow distance.
+
+![Fluid levels around one source: eight at the source, one less for each block](flow-levels.svg)
+
 The library mirrors the vanilla `FlowingFluid` and `WaterFluid` classes:
 
 - A cell falls into the cell below whenever it can. It fans out only when it cannot fall, or when it just fell and three or more sources surround it. A source over a hole therefore pours down without flooding the floor around the hole.

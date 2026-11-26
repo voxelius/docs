@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 1100" width="140" height="140" style="max-width:100%;height:auto">
+<path d="M 550.00,91.67 L 153.07,320.83 L 550.00,550.00 L 946.93,320.83 Z" fill="#6fc652" stroke="#1a1a1a" stroke-width="20.0" stroke-linejoin="round"/>
+<path d="M 550.00,1008.33 L 946.93,779.17 L 946.93,320.83 L 550.00,550.00 Z" fill="#1c5ad1" stroke="#1a1a1a" stroke-width="20.0" stroke-linejoin="round"/>
+<path d="M 153.07,779.17 L 550.00,1008.33 L 550.00,550.00 L 153.07,320.83 Z" fill="#da3a29" stroke="#1a1a1a" stroke-width="20.0" stroke-linejoin="round"/>
+<text transform="matrix(0.8660 0.5000 -0.8660 0.5000 550.00 320.83)" x="0" y="0" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="87.08" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="middle">TOP</text>
+<text transform="matrix(0.8660 -0.5000 0.0000 1.0000 748.46 664.58)" x="0" y="0" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="87.08" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="middle">NORTH</text>
+<text transform="matrix(0.8660 0.5000 0.0000 1.0000 351.54 664.58)" x="0" y="0" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="87.08" font-weight="bold" fill="#000000" text-anchor="middle" dominant-baseline="middle">EAST</text>
+</svg>

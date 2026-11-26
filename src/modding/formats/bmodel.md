@@ -23,6 +23,10 @@ Block models live under: `namespace:models/block`
 
 ## Cuboid object
 
+The figure shows a cuboid between `min` and `max` inside a cell. One grid line is 1/16 of a block.
+
+![A cuboid between min [2, 0, 5] and max [11, 7, 14] inside a cell ruled in sixteenths](bmodel-grid.svg)
+
 |Field|Type|Required|Default|Description|
 |----|----|----|----|----|
 |`min`|`number[3]`|yes|N/D|Cuboid start in 1/16ths of a block|

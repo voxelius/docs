@@ -47,6 +47,10 @@ A wrapper around `blocks.add` that defines a slab block family.
 
 #### Notes
 
+The figure shows the three orientations. A filled slab shares its cell with a fluid.
+
+![A bottom slab with fluid above it, a top slab with fluid below it, and a double slab](slabs-orientation.svg)
+
 - The registered block family gets an `orientation` state and variants for `top`, `bottom`, and `double`.
 - With `fillable`, the family also gets the `flowdef.filled_state` state. Its values are `"none"` and the fluid names. A variant with a fluid name binds that fluid through `fluid_name`, so the slab and the fluid share one cell, like a waterlogged block. A filled cell acts as a full source of that fluid.
 - A `bottom` slab is open through its four side faces and the cell boundary above it. A `top` slab is open through its side faces and the boundary below it (`fluid_faces`). A `double` slab is a full cube and never holds a fluid.

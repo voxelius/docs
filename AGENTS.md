@@ -41,10 +41,11 @@ The book is built with mdBook 0.5.4 and published at <https://voxelius.github.io
 |`src/engine/`|Setup, build, editor, architecture, code style and contribution rules|
 |`src/modding/`|Mod layout, the Lua API, the file formats and the helper libraries|
 |`theme/`|Favicon and the only style override|
+|`figsrc/`|Scripts that render the SVG figures under `src/`. See `figsrc/README.md`|
 |`book/`|Generated site. Git ignores it|
 
 - A page that is not in `src/SUMMARY.md` is not part of the book.
-- An image sits next to the page that uses it, as `src/modding/api/facing-north.png` does.
+- An image sits next to the page that uses it, as `src/modding/api/facing-north.svg` does.
 - `theme/extra.css` tightens the table cell padding. A five-column table is wider than the page column without it.
 - Pages about the project itself, such as its history, do not belong here. They live with the landing page.
 
