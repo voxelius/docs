@@ -8,13 +8,13 @@ These values match the game and engine version. See `core/version.hh` for the C+
 
 |Value|Example|Description|
 |----|----|----|
-|`core.VERSION_MAJOR`|`16`|Major version number|
+|`core.VERSION_MAJOR`|`17`|Major version number|
 |`core.VERSION_MINOR`|`0`|Minor version number|
-|`core.VERSION_PATCH`|`3`|Patch version number|
+|`core.VERSION_PATCH`|`0`|Patch version number|
 |`core.VERSION_SCM_BRANCH`|`main`|SCM branch name|
 |`core.VERSION_SCM_REVISION`|`deadbeef`|SCM revision (git commit hash)|
-|`core.VERSION_SEMANTIC`|`16.0.3`|Semantic version string|
-|`core.VERSION`|`16.0.3-main [deadbeef]`|Full build-system version string|
+|`core.VERSION_SEMANTIC`|`17.0.0`|Semantic version string|
+|`core.VERSION`|`17.0.0-main [deadbeef]`|Full build-system version string|
 
 ## Current namespace
 

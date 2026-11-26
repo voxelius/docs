@@ -77,7 +77,7 @@ def pipeline():
     # shown almost 1:1 and the labels keep the size of the body text.
     rows = [
         ("Diffuse", "opaque + depth"),
-        ("Clouds", "borrows depth"),
+        ("Clouds", "own depth range"),
         ("Alpha", "leaves, glass"),
         ("Fluid", "water, lava"),
         ("Precip", "camera quads"),
@@ -99,12 +99,17 @@ def pipeline():
         arrow(fig, (52, c), (rx - 4, c), width=2.0, head=10)
         node(fig, rx, y, rw, rh, rows[ys.index(y)][0], rows[ys.index(y)][1])
 
-    # the diffuse depth is copied into every other layer
+    # the diffuse depth is copied into the translucent layers; the clouds keep a
+    # depth range of their own and the composite compares the two
     spine = rx + rw + 26
-    for c in centres:
+    translucent = centres[2:]
+    # the source sits above the clouds, so its stubs go out at a right angle and
+    # the bus runs past that row without a stub of its own
+    dashed(fig, (rx + rw, centres[0]), (spine, centres[0]))
+    dashed(fig, (spine, centres[0]), (spine, translucent[-1]))
+    for c in translucent:
         dashed(fig, (rx + rw, c), (spine, c))
-    dashed(fig, (spine, centres[0]), (spine, centres[-1]))
-    text(fig, spine + 16, centres[len(centres) // 2], "depth copy", 17,
+    text(fig, spine + 16, (centres[2] + translucent[-1]) / 2, "depth copy", 17,
          anchor="middle", fill=MUTED, weight="normal", rotate=-90)
 
     # every layer goes into the composite
@@ -214,7 +219,7 @@ def cloud_rings():
         text(fig, lx + 42, y + 2, name, 20)
         text(fig, lx + 42, y + 26, detail, 19, fill=PAGE, weight="normal")
 
-    for i, line in enumerate(("Rings overlap by one cell.",
+    for i, line in enumerate(("Rings overlap by two cells.",
                               "The coarse ring is meshed first.",
                               "Not to scale.")):
         text(fig, lx, 330 + i * 32, line, 19, fill=PAGE, weight="normal")

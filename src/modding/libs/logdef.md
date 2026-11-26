@@ -14,7 +14,7 @@ This function returns an `on_place` callback for a given log identifier.
 
 #### Arguments
 
-- `identifier` is the namespaced block ID. If you omit the namespace, the engine uses `core.NAMESPACE`.
+- `identifier` is accepted for symmetry and is not read. Only `add_block` resolves a namespace.
 
 #### Return value
 

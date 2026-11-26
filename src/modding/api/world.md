@@ -18,7 +18,7 @@ Retrieves a numeric block ID from the world.
 
 #### Return value
 
-- Normally, a numeric block ID
+- Normally, the numeric block ID. A state variant collapses to the stem ID of its family
 - If there is no block or the chunk is not present, returns `blocks.NULL_BLOCK`
 
 ### Function: `world.get_fluid(bx, by, bz) -> integer`
@@ -110,6 +110,7 @@ Retrieves a blockstate at a given position.
 - `bx` is the world-scale block X position
 - `by` is the world-scale block Y position
 - `bz` is the world-scale block Z position
+- `st` is the blockstate name
 
 #### Return value
 
@@ -146,7 +147,7 @@ Retrieves the base temperature of the biome at a block.
 #### Return value
 
 - Base temperature in degrees Celsius
-- `15.0` if the block is void or the chunk is not present
+- `15.0` if the biome at the position is unknown
 
 ### Function: `world.get_temperature(bx, by, bz) -> number`
 
@@ -161,7 +162,7 @@ Retrieves the effective temperature of the biome at a block.
 #### Return value
 
 - Effective temperature in degrees Celsius
-- `15.0` if the block is void or the chunk is not present
+- `15.0` if the biome at the position is unknown
 
 #### Notes
 
@@ -179,8 +180,8 @@ Retrieves the base relative humidity of the biome at a block.
 
 #### Return value
 
-- Base relative humidity from 0 to 1
-- `0.5` if the block is void or the chunk is not present
+- Base relative humidity in percent, from 0 to 100
+- `50.0` if the biome at the position is unknown
 
 ### Function: `world.get_humidity(bx, by, bz) -> number`
 
@@ -194,8 +195,8 @@ Retrieves the effective relative humidity of the biome at a block.
 
 #### Return value
 
-- Effective relative humidity from 0 to 1
-- `0.5` if the block is void or the chunk is not present
+- Effective relative humidity in percent, from 0 to 100
+- `50.0` if the biome at the position is unknown
 
 #### Notes
 

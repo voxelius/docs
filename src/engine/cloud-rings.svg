@@ -19,7 +19,7 @@
 <rect x="380" y="239" width="28" height="28" rx="4" fill="#9cc1e2"/>
 <text x="422.00" y="258.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" font-weight="bold" text-anchor="start" fill="#7a818a">1536-4096 blocks</text>
 <text x="422.00" y="282.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="normal" text-anchor="start" fill="#7a818a">256 chunks, 128 per cell</text>
-<text x="380.00" y="330.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="normal" text-anchor="start" fill="#7a818a">Rings overlap by one cell.</text>
+<text x="380.00" y="330.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="normal" text-anchor="start" fill="#7a818a">Rings overlap by two cells.</text>
 <text x="380.00" y="362.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="normal" text-anchor="start" fill="#7a818a">The coarse ring is meshed first.</text>
 <text x="380.00" y="394.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="19" font-weight="normal" text-anchor="start" fill="#7a818a">Not to scale.</text>
 </svg>

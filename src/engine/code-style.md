@@ -1,8 +1,15 @@
 # Code Style
 
+## Language
+
+The engine is C++23. Prefer the standard facilities it adds over the older workarounds, and do not lower the level to suit a
+compiler that the requirements page does not list.
+
 ## Clang-format
 
-Format all C++ code with `clang-format`. The config file is in the repository root. If your editor supports format-on-save, enable it. Otherwise format before you commit.
+Format all C++ code with `clang-format` 21. The config file is in the repository root. If your editor supports format-on-save,
+enable it. Otherwise format before you commit, and check the result with
+`clang-format --dry-run --Werror <files>`.
 
 Dependencies stay out of automatic formatting. They rarely match Voxelius style.
 
@@ -30,7 +37,9 @@ Notable settings:
 |Public fields and members|`snake_case`|`BlockDefinition::model_offset`|
 |Private fields and members|`m_snake_case`|`Chunk::m_blocks`|
 |Constants|`UPPER_SNAKE_CASE`|`BASE_WIDTH`|
-|Type aliases|Inherited|...|
+|Enumeration types|`snake_case`|`enum class task_status`|
+|Enumeration values|`UPPER_SNAKE_CASE`|`task_status::ENQUEUED`|
+|Type aliases|`snake_case`|`using block_tag_bit = std::uint32_t;`|
 
 - Two names must differ by more than capitalization: `world_scope` and `WorldScope` read as the same name, so keep one of them.
 - A cvar binding takes the cvar name and the `_binding` suffix:
@@ -73,9 +82,11 @@ void vx::teardown(void)
 ## Styling considerations
 
 - Mark classes and structures `final` unless they are meant as a base.
+- A structure that gains a method becomes a class.
 - Functions and methods with zero arguments use C-style `void` inside the parentheses.
-- Do not silence an unused value with a `void` cast (`(void)x;`, `static_cast<void>(x);`). Leave an unused parameter unnamed in the
-  definition (`void f(int x, int)`).
+- Do not silence an unused value with a `void` cast (`(void)x;`, `static_cast<void>(x);`).
+- Name every parameter, including an unused one (`void f(int x, int y)`). An unnamed parameter of a fundamental type makes
+  `function(char)` read like `function(void)`. Disable the unused-parameter warning for that function or translation unit instead.
 - Place `constexpr` function bodies in the header, just after the declarations.
 - Do not repeat a `const` the initializer already carries. When a function returns a const reference, `auto&` is enough and
   `const auto&` is noise.
@@ -84,7 +95,8 @@ void vx::teardown(void)
   initializer instead: `auto elapsed = std::chrono::system_clock::duration(now.time_since_epoch());`.
 - C++ headers use `.hh`. C++ sources use `.cc`.
 - You may use profanity in source code. I own the code and can comment as I choose.
-- Use standard `assert` for debug-time checks. Use `vx::throw_if_xxxx` when the game should crash on failure.
+- Use standard `assert` for debug-time checks. Report a failure with `vx::throw_if` or `vx::throw_if_not` from
+  `core/exception.hh`. `main` catches the exception, logs it and returns a failure code.
 - Test a pointer or a handle by itself when it must be present. Compare it with the null value when it must be absent: `if(ptr)` and
   `if(ptr == nullptr)`, `if(handle)` and `if(handle == BIOME_ID_NULL)`. A count follows the same split. Never write the absent case as a
   negation or an inequality (`if(!ptr)`, `if(!handle)`, `!= 0`, `!= nullptr`), and keep negating a call that only reports a condition:
@@ -127,6 +139,7 @@ Example:
 
 ## Namespaces
 
+- Do not qualify a name with its own namespace when the code already sits inside it.
 - Namespaces follow modules. The same header often reopens a namespace per logical group. Put internal or private types in a `detail` sub-namespace.
 - Every closing brace gets a `// namespace name` comment. Clang-format enforces this.
 
@@ -207,6 +220,9 @@ Every translation unit keeps the same top-level order:
 
 - Use plain C++ comments (except for include guards).
 - Comment sparingly. Explain non-obvious logic, or vent. Read existing comments for the tone.
+- Write a comment that needs following up as a tagged one: `TODO:`, `UNDONE:`, `FIXME:` or `NOTE:`. Keep it to the line limit and
+  write it in the same plain wording as the prose.
+- Do not leave commented-out code behind. Delete it.
 - Mark empty function or method bodies with `// empty`.
 
 Example 1:

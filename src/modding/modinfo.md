@@ -7,7 +7,7 @@ Every mod root directory contains a `modinfo.conf` file. The file uses the commo
 |Name|Required|Default|Description|
 |----|----|----|----|
 |`name`|yes|N/D|Mod name/ID used for namespacing|
-|`version`|yes|`0.0.0`|Semantic version used for compatibility checks|
+|`version`|no|`0.0.0`|Semantic version used for compatibility checks|
 |`hard_depends`|no|N/D|Whitespace-separated list of hard dependencies|
 |`soft_depends`|no|N/D|Whitespace-separated list of soft dependencies|
 |`conflicts`|no|N/D|Whitespace-separated list of conflicting mods|
@@ -18,7 +18,7 @@ Every mod root directory contains a `modinfo.conf` file. The file uses the commo
 |`display_name`|no|Value of `name`|Metadata: display name|
 |`display_desc`|no|N/D|Metadata: short description|
 
-> **NOTE:** every mod implicitly depends on `builtin` at the version the game runtime ships (see `core/version.cc`).
+> **NOTE:** every mod implicitly depends on `builtin` at the version the game runtime ships (see `core/version.cc.in`, which takes the version from `CMakeLists.txt`).
 
 ## Example
 

@@ -4,7 +4,7 @@
 
 The source tree vendors most dependencies when it can. Network access is rarely required.
 
-The main exception is a Windows build that cannot find a working SDL3 install. In that case the build may download SDL3.
+A Windows build always downloads the SDL3 development kit while it configures, so it needs network access for that download.
 
 You also need network access to clone the repository.
 

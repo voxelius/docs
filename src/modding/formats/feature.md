@@ -4,7 +4,7 @@ A feature is a single world-generation template. It contains a block palette and
 
 Stored features live under: `namespace:features`
 
-A mod authors features facing **north** (`blocks.FACE_NORTH`). Placement rules supply world origin and facing at runtime.
+A mod authors features facing **north** (`blocks.FACE_NORTH`). The scatter rule takes the world origin from the terrain and places every feature facing north for now.
 
 The figure shows the parts of one feature in space. The offsets count from the ground block.
 
@@ -14,7 +14,7 @@ The figure shows the parts of one feature in space. The offsets count from the g
 
 |Field|Type|Required|Default|Description|
 |----|----|----|----|----|
-|`palette`|`object[]`|no|`[]`|Block palette for the feature|
+|`palette`|`object[]`|yes|N/D|Block palette for the feature. At least one entry is required|
 |`parts`|`object[]`|yes|N/D|Feature parts|
 
 ## Palette entries

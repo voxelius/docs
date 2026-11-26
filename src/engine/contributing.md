@@ -10,14 +10,15 @@ The project uses the BSD 3-Clause license. See `LICENSE`. A change that you send
 
 - Open an issue for a large change: a new subsystem, a new file format, a change to the network protocol. Explain what you want to do and why. Wait for an answer before you write much code.
 - Send a small fix directly. A typo, a crash, a wrong number: these need no discussion.
-- Do not edit `deps/`. It holds vendored third-party code and its update scripts.
+- Do not edit `deps/`. It holds vendored third-party code and the CMake glue that builds it.
 - Do not commit `build/`, `dist/` or `.vscode/settings.json`. The build writes the first two, and the last one belongs to your machine.
 
 ## Making a change
 
 - Make one logical change per commit. Do not mix a refactor with a change of behaviour.
 - Keep the change inside one area when you can. A commit that touches unrelated areas is hard to review.
-- Format every changed C++ file with `clang-format` and the repository `.clang-format`. The [Code Style](code-style.md) page lists the settings.
+- Format every changed C++ file with `clang-format` and the repository `.clang-format`, and check the result with
+  `clang-format --dry-run --Werror <files>`. The [Code Style](code-style.md) page lists the settings.
 - Build the target that you change. Run the client or the server when the change can affect them.
 - Send a page change to the [documentation repository](https://github.com/voxelius/docs) when the change modifies a
   documented behaviour. The page and the code may land in separate pull requests.
@@ -28,7 +29,7 @@ There is no test suite. You test a change by building it and by running the game
 
 - Run the client for a change to rendering, the interface or the client systems.
 - Run the server for a change to the world, entities, physics or the network.
-- Run both sides against each other for a change to the network protocol or to the shared game logic. The two sides must agree on the block, biome, fluid, tint and entity registries.
+- Run both sides against each other for a change to the network protocol or to the shared game logic. The two sides must agree on every registry: the block, biome, fluid, tint, entity, weather and precipitation ones.
 
 Describe the test in the pull request. A reviewer cannot see your machine.
 
@@ -76,6 +77,9 @@ You can use AI tools, but a human drives the work:
 - Mark a commit that has material AI help with an `Assisted-by:` trailer (see [Trailers](#trailers)).
 
 ## Pull requests
+
+No workflow compiles the game or blocks a pull request, so the checks on this page are yours to run. A maintainer reads the
+change and merges it as a merge commit.
 
 - Open the pull request against the default branch.
 - Describe what the change does and how you tested it. Do not repeat the diff.

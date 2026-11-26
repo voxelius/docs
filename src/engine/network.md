@@ -21,7 +21,7 @@ The figure shows the exchange. The table lists the same steps.
 |1|Client|Server|The client connects|
 |2|Client|Server|The client sends a status request packet|
 |3|Server|Client|The server responds with a status response packet|
-|4|Server|Client|The server closes the connection|
+|4|Client|Server|The client closes the connection|
 
 ## Authentication
 
@@ -44,7 +44,7 @@ The figure shows the exchange. The table lists the same steps.
 
 ##### Spawn world
 
-The server admits the client into the world named by `sv_spawn_world`. An empty value selects the default world. The server sends the world shape, the weather seed and the clocks in the admission packets. The client therefore needs no world name of its own. The world seed never leaves the server.
+The server admits the client into the world that `worlds.jsonc` marks with `"default": true`, or the first world when none is marked. The server sends the world shape, the weather seed and the clocks in the admission packets. The client therefore needs no world name of its own. The world seed never leaves the server.
 
 ##### Identity
 
@@ -109,9 +109,9 @@ The server owns every variable flagged with `FCVAR_REPLICATED`. After admission 
 
 The client keeps the server value in a shadow. A local variable with the same name must also carry the `FCVAR_REPLICATED` flag. Otherwise the client ignores the server value and logs a warning. A full snapshot drops stale remote variables and clears the old shadows.
 
-The server accepts a cvar value from a client only when the variable carries the `FCVAR_ADMIN` flag and the caller is an operator. The client console forwards a write to a shadowed variable through the same `Cvar_Command` path as a command. The server applies the operator check and ignores every other remote value. Gamerules use the `gr_` prefix. Match rules will use `mp_`. The console `help` command lists every variable and command.
+The server accepts a cvar value from a client only when the variable carries the `FCVAR_ADMIN` flag and the caller is an operator. The client console forwards a write to a shadowed variable through the same `Cvar_Command` path as a command. The server applies the operator check and ignores every other remote value. Gamerules use the `gr_` prefix. Match rules will use `mp_`. The console `list_vars` and `list_cmds` commands list every variable and command.
 
-The command snapshot follows the same exchange. The server sends one full list to each admitted client. The list leaves out the commands that carry the `FCVAR_ADMIN` flag unless that client is an operator. When a live session gains or loses the operator status, the server sends the list again. A dirty variable update carries every replicated variable, including the admin-flagged ones.
+The command snapshot follows the same exchange. The server sends one full list to each admitted client. The list leaves out the commands that carry the `FCVAR_ADMIN` flag unless that client is an operator. When a live session gains or loses the operator status, the server sends the list again. A dirty variable update carries only the replicated variables that changed in that tick.
 
 The snapshot packet carries a `uint8 full` flag and a `uint32 count`, then for each variable a `string name` and a `string value`. A full snapshot adds a `uint16 flags` and a `string help` for each entry.
 
@@ -131,7 +131,7 @@ The server sends `World_Info` at admission and again when a session moves to ano
 
 ##### World switch
 
-A session moves to another world only through `tpe`, which runs on the server. The server moves the player entity into the target registry, then repeats the admission state: `World_Info`, `World_Timings` and `Entity_Client` for the new entity. The client purges its world on `World_Info`, drops the player and resets its weather state, then streams the new world from its next `World_Request`. Entity, light and block packets carry the world they belong to and never reach a session in another world.
+A session moves to another world only through `tpe`, which runs on the server. The server moves the player entity into the target registry, then repeats the admission state: `World_Info`, `World_Timings` and `Entity_Client` for the new entity. The client purges its world on `World_Info`, drops the player and resets its weather state, then streams the new world from its next `World_Request`. The server scopes entity, light and block packets to the session's own world, so they never reach a session in another world.
 
 ##### Time
 
@@ -145,7 +145,7 @@ The engine derives the weather, and it does not stream it. The server rolls one 
 
 The client sends one of four packets depending on what it targets and what it does: `PlayerAttackE`/`PlayerInteractE` for an entity target, `PlayerAttackB`/`PlayerInteractB` for a block target. There is no single unified packet with a nullable target field.
 
-The entity variants carry only the targeted entity. The block variants carry the block's position and the ID the client expects to find there, plus the hit face, normal, and point. These three fields match the `physics::BlockHit` fields the block callbacks expect.
+The entity variants carry only the targeted entity. Both block variants carry the block's position and the ID the client expects to find there. `PlayerInteractB` also carries the hit face, normal and point, which match the `physics::BlockHit` fields the block callbacks expect.
 
 ## Packet reference
 
@@ -251,7 +251,9 @@ Disconnection notification. Each side should close the connection right after th
 |`0x00000008`|Outdated server|Client is too new for the server|
 |`0x00000009`|Server is full|No more free slots available|
 |`0x0000000A`|Server shutdown|Server is terminating|
+|`0x0000000B`|Cvar rejected|A remote write to an admin variable was refused|
 |`0x0000000C`|Kicked|An operator removed the client|
+|`0x0000000D`|World unknown|The client asked for a world the server does not have|
 
 ### `0x0007` `RequestChunk`
 
@@ -319,8 +321,7 @@ Each entry:
 |`uint8`|`full`|`1` when the entry carries the whole array, `0` for a delta|
 |`data`|`light`|Only with `full = 1`. Packed light, same layout as the `light` field of `ChunkBlocks`|
 |`uint16`|`cells`|Only with `full = 0`. Number of changed cells|
-|`uint16[cells]`|`indices`|Only with `full = 0`. Cell index, the same order as the `light` array|
-|`uint8[cells]`|`values`|Only with `full = 0`. New packed light of the matching cell|
+|`uint16, uint8`|`index, value`|Only with `full = 0`. One pair per changed cell, repeated `cells` times: the cell index, the same order as the `light` array, then the new packed light|
 
 The server applies a delta only to a chunk that the client already holds light for. When the server replaces a whole array, it always sends it whole. It does the same when the changed cells outnumber a quarter of the chunk, instead of sending a delta that would be larger.
 
@@ -344,6 +345,65 @@ The server sends this packet when the surface or liquid height of a column chang
 |`vector2<int64>`|`bpos`|World-scale XZ block position|
 |`int32`|`surface_y`|Top surface block, or `INT32_MIN`|
 |`int32`|`liquid_y`|Top liquid block, or `INT32_MIN`|
+
+### `0x000E` `WorldTimings`
+
+The server sends this packet every tick for the world a client is in
+
+|Type|Name|Description|
+|----|----|----|
+|`uint64`|`current_tick`|Current world tick|
+|`uint64`|`daylight_tick`|Tick the daylight cycle follows|
+|`uint64`|`day`|Day number|
+|`uint64`|`weather_tick`|Tick the weather clock stands at|
+|`uint64`|`season_tick`|Reserved for the season cycle, zero for now|
+
+### `0x000F` `WorldInfo`
+
+The server sends this packet when it admits a client, and again when the client moves to another world
+
+|Type|Name|Description|
+|----|----|----|
+|`string`|`name`|World name|
+|`uint64`|`weather_seed`|Seed of the weather field of this world|
+|`int64`|`min_y`|Lowest buildable block Y|
+|`int64`|`max_y`|Highest buildable block Y|
+|`vector3<int64>`|`spawn`|Spawn position|
+|`uint16`|`nweather`|Number of allowed weather types. Zero allows every type|
+|`uint32[nweather]`|`weather`|Allowed weather type IDs|
+
+### `0x0010` `CvarServerVars`
+
+The server sends this packet with the variables a client may read
+
+|Type|Name|Description|
+|----|----|----|
+|`uint8`|`full`|`1` for a full list, `0` for an update|
+|`uint32`|`count`|Number of variables|
+|`string`|`name`|Variable name, per variable|
+|`string`|`value`|Variable value, per variable|
+|`uint16`|`flags`|Variable flags, per variable. Only with `full = 1`|
+|`string`|`help`|Variable help, per variable. Only with `full = 1`|
+
+### `0x0011` `CvarServerCmds`
+
+The server sends this packet with the commands a client may run
+
+|Type|Name|Description|
+|----|----|----|
+|`uint32`|`count`|Number of commands|
+|`string`|`name`|Command name, per command|
+|`uint16`|`flags`|Command flags, per command|
+|`string`|`help`|Command help, per command|
+
+### `0x0012` `CvarCommand`
+
+The client sends this packet to run a console line on the server
+
+|Type|Name|Description|
+|----|----|----|
+|`uint32`|`request_id`|ID the server echoes in its reply|
+|`string`|`line`|Console line, no longer than the protocol limit|
 
 ### `0x0013` `PlayerAttackE`
 
@@ -384,6 +444,18 @@ Sent by client to specify an interact action against a block
 |`vector3<float>`|`normal`|Hit normal|
 |`vector3<float>`|`point`|Hit point local to the block|
 
+### `0x0017` `PlayerMoveData`
+
+The client sends this packet with its own movement state
+
+|Type|Name|Description|
+|----|----|----|
+|`vector3<int32>`|`cpos`|Chunk position the client simulated in|
+|`vector3<float>`|`angles`|Camera angles|
+|`vector3<float>`|`lpos`|Local position inside the chunk|
+|`vector3<float>`|`velocity`|Velocity|
+|`vector3<float>`|`wishdir`|Direction the player asks to move in|
+
 ### `0x0018` `EntitySpawn`
 
 The server sends this packet when it spawns an entity
@@ -391,7 +463,7 @@ The server sends this packet when it spawns an entity
 |Type|Name|Description|
 |----|----|----|
 |`uint64`|`id`|Entity ID|
-|`class_id_type`|`class_id`|Numeric class ID|
+|`uint16`|`class_id`|Numeric class ID|
 
 ### `0x0019` `EntityPatch`
 
@@ -401,7 +473,9 @@ The server sends this packet when it updates a component of an entity
 |----|----|----|
 |`uint64`|`id`|Entity ID|
 |`uint32`|`ncomp`|Component count|
-|`component[ncomp]`|`components`|Serialized components|
+|`uint16`|`id`|Component ID, per component|
+|`uint32`|`size`|Byte length of the component, per component|
+|`data`|`bytes`|Component bytes, per component|
 
 ### `0x001A` `EntityRemove`
 
@@ -410,3 +484,22 @@ The server sends this packet when it removes an entity
 |Type|Name|Description|
 |----|----|----|
 |`uint64`|`id`|Entity ID|
+
+### `0x001B` `EntityClient`
+
+The server sends this packet to tell a client which entity it controls
+
+|Type|Name|Description|
+|----|----|----|
+|`uint64`|`id`|Entity ID|
+
+### `0x001C` `MsgLog`
+
+The server sends this packet as the reply to a console line
+
+|Type|Name|Description|
+|----|----|----|
+|`uint32`|`request_id`|ID of the request it answers|
+|`uint8`|`level`|Log level of the message|
+|`string`|`message`|Message text|
+

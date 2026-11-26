@@ -17,7 +17,7 @@
 <path d="M 76.00,210.00 L 86.00,205.00 L 76.00,200.00 Z" fill="#1a1a1a"/>
 <rect x="90" y="178" width="510" height="54" rx="6" fill="#eaeef2" stroke="#a8b1bb" stroke-width="1.6"/>
 <text x="106.00" y="212.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" font-weight="bold" text-anchor="start" fill="#1a1a1a">Clouds</text>
-<text x="584.00" y="211.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="end" fill="#5b6168">borrows depth</text>
+<text x="584.00" y="211.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="end" fill="#5b6168">own depth range</text>
 <path d="M 52.00,274.00 L 76.00,274.00 L 76.00,272.00 L 52.00,272.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
 <path d="M 76.00,278.00 L 86.00,273.00 L 76.00,268.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
 <path d="M 52.00,274.00 L 76.00,274.00 L 76.00,272.00 L 52.00,272.00 Z" fill="#1a1a1a"/>
@@ -41,17 +41,15 @@
 <text x="584.00" y="415.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="end" fill="#5b6168">camera quads</text>
 <path d="M 600.0,137.0 L 626.0,137.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 600.0,137.0 L 626.0,137.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
-<path d="M 600.0,205.0 L 626.0,205.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M 600.0,205.0 L 626.0,205.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
+<path d="M 626.0,137.0 L 626.0,409.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M 626.0,137.0 L 626.0,409.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
 <path d="M 600.0,273.0 L 626.0,273.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 600.0,273.0 L 626.0,273.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
 <path d="M 600.0,341.0 L 626.0,341.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 600.0,341.0 L 626.0,341.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
 <path d="M 600.0,409.0 L 626.0,409.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 600.0,409.0 L 626.0,409.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
-<path d="M 626.0,137.0 L 626.0,409.0" fill="none" stroke="#fdfdfd" stroke-width="6.2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M 626.0,137.0 L 626.0,409.0" fill="none" stroke="#6f777f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 7"/>
-<text x="642.00" y="273.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="middle" transform="rotate(-90 642.00 273.00)" fill="#5b6168">depth copy</text>
+<text x="642.00" y="341.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="normal" text-anchor="middle" transform="rotate(-90 642.00 341.00)" fill="#5b6168">depth copy</text>
 <path d="M 90,476 L 90,488 L 600,488 L 600,476" fill="none" stroke="#fdfdfd" stroke-width="6.0" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 90,476 L 90,488 L 600,488 L 600,476" fill="none" stroke="#5b6168" stroke-width="2.0" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M 343.70,488.00 L 343.70,505.00 L 346.30,505.00 L 346.30,488.00 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>

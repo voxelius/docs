@@ -56,13 +56,13 @@ Looks up a registered fluid by name.
 |Field|Type|Required|Default|Description|
 |----|----|----|----|----|
 |`gravity`|`integer`|yes|N/D|One of `fluids.GRAVITY_XXXX` constants|
-|`albedo`|`table`|yes|N/D|Fluid albedo textures|
+|`albedo`|`table`|yes|N/D|Fluid albedo textures. `still` and `flowing` are both required, and `masks` is optional|
 |`masks`|`table`|no|`{}`|Fluid mask textures|
-|`full_level`|`integer`|yes|N/D|Level that counts as a full cell, in 1/16ths of a block|
+|`full_level`|`integer`|yes|N/D|Level that counts as a full cell, from 1 to 15. The surface height is that many 1/16ths of a block|
 |`physics`|`table`|yes|N/D|Movement values inside the fluid (see below)|
 |`opaque`|`boolean`|no|`false`|If `true`, fluid quads use the `blocks.RENDER_SOLID` step instead of the fluid step|
 |`tint`|`string`|no|`nil`|Namespaced tint id|
-|`fog_density`|`number`|no|1.0|When the client camera is inside this fluid, the engine divides fog distance by this value|
+|`fog_density`|`number`|no|1.0|When the client camera is inside this fluid, the engine divides fog distance by this value. The engine clamps it to at least 1.0|
 |`fog_color`|`number[3]`|no|`{1,1,1}`|When the client camera is inside this fluid, the engine replaces fog color with this value|
 
 ## Fluid physics

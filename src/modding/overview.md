@@ -13,16 +13,16 @@ The engine uses _namespaced identifiers_, similar to Minecraft. A namespaced ide
 The namespace is optional.
 
 - In a mod script, a missing namespace defaults to the namespace of that mod.
-- Elsewhere, a missing namespace defaults to `builtin` (the base game "mod" ID).
+- Elsewhere, the parser keeps the namespace empty. The code that reads an engine file passes `builtin` explicitly.
 
-Valid characters in both namespace and identifier:
+The engine does not check the characters below, and it splits the string at the first `:`. This set is a convention:
 
 - Latin letters: `A-Z` and `a-z`
 - Digits: `0-9`
 - Underscore: `_`
 - Tilde: `~` (not recommended for general use, see below)
 
-On init, if the engine finds a duplicate registry entry (for example `mymod:myblock` registered twice), it appends `~N` and retries. The engine does not define the behaviour after 10000 renames.
+On init, if the engine finds a duplicate registry entry (for example `mymod:myblock` registered twice), it appends `~N` and retries. After 9999 attempts it logs a critical message and keeps the original identifier.
 
 ## Sides
 

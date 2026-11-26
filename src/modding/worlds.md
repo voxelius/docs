@@ -35,7 +35,7 @@ World definitions are server configuration. They are not a Lua API, and a mod ca
 
 |Field|Type|Default|Description|
 |----|----|----|----|
-|`default`|`boolean`|`false`|The world that `sv_spawn_world` selects when it is empty|
+|`default`|`boolean`|`false`|The world that a new session joins|
 |`generator`|`string`|required|`vox17` or `superflat`|
 |`generator_settings`|`object`|`{}`|Settings for the generator|
 |`min_y`, `max_y`|`integer`|`-64`, `255`|Lowest and highest world block Y|
@@ -46,7 +46,7 @@ World definitions are server configuration. They are not a Lua API, and a mod ca
 
 Each key is the world name. The name is also the directory under `save/` that holds the world. It may use letters, digits, `_`, `-` and `.`. The terrain seed derives from the name and the universe seed, so a renamed world starts from scratch.
 
-Set `default` to true on one world. The `sv_spawn_world` cvar selects a world by name, and an empty value selects the default world. Without a marked default, the first world is used.
+Set `default` to true on one world. Every admitted session joins that world. Without a marked default, the server uses the first world in the file.
 
 `weather` lists the weather types that the world may pick. A name without a namespace resolves in the `builtin` namespace. The engine resolves the names after all mods load, so a mod can add a type that this file names. An unknown name is dropped with a warning.
 

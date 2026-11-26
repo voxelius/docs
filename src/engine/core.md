@@ -4,9 +4,9 @@ The core is the foundation of the engine. Client, server, and shared game logic 
 
 ## Process lifecycle
 
-When the engine starts, it resolves three directories: the game data directory, the user data directory, and the mods directory. The user data directory location depends on the platform. The engine uses `%APPDATA%`, the XDG data directory, `$HOME`, or the current directory, in that order, as fallbacks. The engine mounts all three directories into one virtual filesystem. The user directory is writable. The engine searches the mods directory last. Other engine parts, such as configs, resources, and mods, read and write through this virtual filesystem. None of them touch the physical disk directly. On shutdown, the engine reverses these steps.
+When the engine starts, it resolves three directories: the game data directory, the user data directory, and the mods directory. The user data directory location depends on the platform. The engine uses `%APPDATA%`, the XDG data directory, `$HOME`, or the current directory, in that order, as fallbacks. The `-user` option sets the user directory and `-gamepath` sets the data directory before any fallback runs. The engine mounts all three directories into one virtual filesystem. The user directory is writable. The engine searches the mods directory last. Other engine parts, such as configs, resources, and mods, read and write through this virtual filesystem. None of them touch the physical disk directly. On shutdown, the engine reverses these steps.
 
-A few small pieces support this startup process. The engine parses command-line options once at startup. Other code can query these options by name, for example to pick a thread pool size. The engine also uses one exception convention, `vx::throw_if` and `throw_if_not`, for every failure case. This convention keeps error handling consistent across the codebase. Without it, each subsystem could invent its own method.
+A few small pieces support this startup process. The engine parses command-line options once at startup. Other code can query these options by name, for example to pick a thread pool size. The engine also uses one exception convention, `vx::throw_if` and `throw_if_not`, for a failure that the caller cannot handle locally. This convention keeps error handling consistent across the codebase. Without it, each subsystem could invent its own method.
 
 Resources and mods use namespaced identifiers, for example `mymod:some/thing`, instead of raw paths. The namespace maps to a mod. The engine reuses this identifier convention for blocks, biomes, sounds, and other moddable items.
 
@@ -20,13 +20,13 @@ The second store is the cvar host. It holds console variables and commands. A va
 
 `cvar::exec_from` reads a command script. Each line is either `name value`, a command, or a comment that starts with `#`. `cvar::save_values` writes every `FCVAR_ARCHIVE` value, then calls the registered write hooks. It can ignore a set of flags: the client passes `FCVAR_REPLICATED`, so the server-owned values never reach `client.conf`. The client uses `client.conf` for its settings and bindings, and the server uses `server.conf`. The client loads `client.user.conf` after `client.conf`, so a user file can override the main file.
 
-The engine sets the defaults and flags first. Then it loads the config file. Then `init_late` applies the values that other subsystems depend on. The client loads both config files after every `init` and before `init_late`. The client runs these steps as one ordered list of boot stages, so it can draw a boot screen between them. The config stays a stage between the `init` group and the `init_late` group.
+The engine sets the defaults and flags first. Then it loads the config file. Then `init_late` applies the values that other subsystems depend on. The client loads both config files in its `config` stage: after the `init` group and before the `init_late` calls that follow it. The client runs these steps as one ordered list of boot stages, so it can draw a boot screen between them. The config stays a stage between the `init` group and the `init_late` group.
 
 The figure shows the three phases. The client reads `client.conf` and then `client.user.conf` between them.
 
 ![The boot stages: init, config and init_late, in the order the client runs them](boot-stages.svg)
 
-A server-owned variable can use `FCVAR_REPLICATED`. The server sends its value to clients as a shadow. A client cannot overwrite the value directly while connected. `FCVAR_ADMIN` marks a command or a variable as operator-only. Only a remote caller that the server considers an operator may run or change it. The engine trusts a context without a client ID. The client console forwards an operator's write to a shadowed variable to the server, and the server applies the value. The console `help` command lists every variable.
+A server-owned variable can use `FCVAR_REPLICATED`. The server sends its value to clients as a shadow. A client cannot overwrite the value directly while connected. `FCVAR_ADMIN` marks a command or a variable as operator-only. Only a remote caller that the server considers an operator may run or change it. The engine trusts a context without a client ID. The client console forwards an operator's write to a shadowed variable to the server, and the server applies the value. The console `list_vars` command lists every variable, and `help <name>` shows one entry.
 
 ## Resources
 
@@ -40,9 +40,9 @@ The figure shows the request path and the two purges.
 
 ## Threading
 
-The engine pushes heavy, non-interactive work onto a background thread pool instead of running it inline. Examples of this work include world generation and chunk meshing, or any CPU-heavy task that would otherwise stall a frame. The pool size comes from the `threads` command-line option, and defaults to four workers.
+The engine pushes heavy, non-interactive work onto a background thread pool instead of running it inline. Examples of this work include world generation and chunk meshing, or any CPU-heavy task that would otherwise stall a frame. The pool size comes from the `threads` command-line option and defaults to four workers. The engine clamps it between one and the hardware thread count, and `threads max` asks for all of them.
 
-The engine splits each piece of work into two parts. Computation runs on a worker thread. Any step that touches shared state, such as uploading a mesh or changing the world, waits until the computation finishes. The main loop checks, once per frame, which tasks finished. For each finished task, it runs that second step on the main thread. This design removes the need for manual locking in most cases. On shutdown, the engine cancels any task that has not finished yet. The engine does not wait for the task, and it does not run the task's main-thread step. It stops the pool before the hard purge runs, so a worker thread never holds a resource when the purge frees it. A resource warning from the purge is therefore a real leak, not a shutdown artifact.
+The engine splits each piece of work into two parts. Computation runs on a worker thread. Any step that touches shared state, such as uploading a mesh or changing the world, waits until the computation finishes. The main loop checks, once per frame, which tasks finished. For each finished task, it runs that second step on the main thread, for at most five milliseconds per frame. The rest waits for the next frame. This design removes the need for manual locking in most cases. On shutdown, the engine cancels any task that has not finished yet and then joins the workers. It does not run the main-thread step of a cancelled task. It stops the pool before the hard purge runs, so a worker thread never holds a resource when the purge frees it. A resource warning from the purge is therefore a real leak, not a shutdown artifact.
 
 ## Buffers
 

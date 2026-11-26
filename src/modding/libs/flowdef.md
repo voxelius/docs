@@ -16,7 +16,7 @@ local flowdef = require("builtin:flowdef")
 |----|----|----|----|
 |`fluid`|`string`|`block_name`|Fluid name. The engine stores the same name in the filled state of a fillable block|
 |`max_level`|`integer`|8|Maximum level for a fluid blockstate|
-|`full_height`|`integer`|14|Maximum fluid level for blockstates|
+|`full_height`|`integer`|14|Surface height of a full cell in 1/16ths of a block. `14` reads as 14/16|
 |`level_decrease`|`integer`|1|Level decrement with flow distance|
 |`delay`|`integer`|5|Scripted tick delay|
 |`infinite`|`boolean`|`true`|If true, flowing fluids can merge into sources|

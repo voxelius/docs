@@ -110,7 +110,7 @@ Marks the class that the engine spawns when a player joins the world.
 |----|----|----|
 |`transform`|`{}`|`{ bpos = {...}, angs = {...} }`|
 |`head`|`{ x, y, z }`|`{ x, y, z }`|
-|`collision`|`{ step_height, width, height }`|`{ step_height, width, height }`|
+|`collision`|`{ step_height, width, height }` or `{ step_height, min, max }`|`{ step_height, width, height }` or `{ step_height, min, max }`|
 |`velocity`|`{}`|`{ x, y, z }`|
 |`move_mode`|`{ value = "WALK" }`|`{ value = "WALK" }`|
 |`player`|`{}`|none|
@@ -129,7 +129,7 @@ Holds the position and the facing of the entity. Both patch fields are optional 
 Holds the head of the entity.
 
 - The definition config is the offset of the head from the entity origin, as three numbers in blocks. The default is `{ 0, 0, 0 }`. The built-in player uses `{ 0, 1.62, 0 }`
-- The patch config is the look angles, as three numbers in radians. The engine clamps the pitch of a player to 90 degrees
+- The patch config is the look angles, as three numbers in radians. `entities.patch` does not clamp them. The client clamps the look pitch of a player to 90 degrees
 
 ### `collision`
 
@@ -144,7 +144,7 @@ Holds the collision box of the entity and the height that it steps over.
 
 ### `velocity`
 
-Holds the velocity of the entity in blocks per second. Each fixed tick the engine adds `velocity * fixed frametime` to the position. A velocity below the epsilon becomes zero.
+Holds the velocity of the entity in blocks per second. Only the `pmove` system moves an entity, and only when the entity carries `player`. A `FLY` entity adds `velocity * frametime` to its position and zeroes a velocity below the epsilon. A `WALK` entity feeds the same product through the collision shapes, so it needs a `collision` component, and its velocity is rewritten after the move.
 
 - The definition config is empty
 

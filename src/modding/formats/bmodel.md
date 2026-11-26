@@ -33,18 +33,18 @@ The figure shows a cuboid between `min` and `max` inside a cell. One grid line i
 |`max`|`number[3]`|yes|N/D|Cuboid end in 1/16ths of a block|
 |`origin`|`number[3]`|no|`[0, 0, 0]`|Pivot point in 1/16ths of a block, used when `rotation` is present|
 |`rotation`|`number[3]`|no|`[0, 0, 0]`|Euler rotation in degrees about X, Y and Z. The engine clamps each axis to `[-180, 180]` and snaps it to the nearest multiple of 15 degrees|
-|`rescale`|`bool`|no|`true`|If true, the engine forces the model into block bounds|
+|`rescale`|`bool`|no|`true`|If false, a face without an explicit `uv` maps the whole texture over the cuboid's extent. It does not move or clamp the cuboid|
 |`shade`|`bool`|no|`true`|If true, the engine applies basic fake-light shading to the cuboid|
-|`faces`|`object`|yes|N/D|Per-direction face definitions|
+|`faces`|`object`|no|`{}`|Per-direction face definitions. A direction that is absent gives the cuboid no quad there|
 
 ## Face object
 
 |Field|Type|Required|Default|Description|
 |----|----|----|----|----|
 |`texture`|`string`|yes|N/D|Texture slot name|
-|`uv`|`number[4]`|no|dynamic|Lets a face sample a sub-rectangle of the texture|
+|`uv`|`number[4]`|no|dynamic|Lets a face sample a sub-rectangle of the texture, in 1/16ths of the image. `[0, 0, 16, 16]` is the whole texture|
 |`uv_rotation`|`number`|no|0|UV rotation: 0, 90, 180, or 270|
-|`cullface`|`string`|no|N/D|Skip this face if the neighbouring block in that direction has a face marked opaque to touch|
+|`cullface`|`string`|no|N/D|A flag in the shape of a face name. The face key already gives the direction; the value is validated and then ignored, and the neighbour's covered faces decide the cull|
 |`tint`|`string`|no|`null`|Namespaced tint id|
 
 ### UV resolution

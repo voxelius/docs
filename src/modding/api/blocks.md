@@ -87,7 +87,7 @@ Retrieves a numeric block stem ID from a namespaced block ID.
 
 #### Notes
 
-- If a block defines states and variants, the return value is a _stem_ ID. The engine does not render, collide with, or raycast a stem placed in the world.
+- If a block defines `states`, the return value is a _stem_ ID. The engine does not render, collide with, or raycast a stem placed in the world.
 
 ### Function: `blocks.has_tag(id, tag) -> boolean`
 
@@ -137,10 +137,10 @@ Returns the numeric block ID.
 
 |Field|Type|Required|Default|Description|
 |----|----|----|----|----|
-|`render`|`integer`|yes|N/D|One of `blocks.RENDER_XXXX` constants|
+|`render`|`integer`|no|`blocks.RENDER_NONE`|One of `blocks.RENDER_XXXX` constants|
 |`albedo`|`table`|depends|`{}`|Albedo textures to attach to the block model|
 |`masks`|`table`|no|`{}`|Mask textures to attach to the block model|
-|`animated`|`boolean`|no|`false`|If true, the engine treats textures in `textures` as animation frames instead of world-position random frames|
+|`animated`|`boolean`|no|`false`|If true, the engine treats the `albedo` slots as animation frames instead of world-position random frames|
 |`model_name`|`string`|depends|N/D|[Block model](../formats/bmodel.md) name for this variant|
 |`model_offset`|`number[3]`|depends|`{0, 0, 0}`|Offset of the resolved block model|
 |`model_facing`|`integer`|no|`blocks.FACE_NORTH`|One of `blocks.FACE_XXXX`. Sets where the model's own north face points, and rotates the whole resolved block model|
@@ -149,18 +149,21 @@ Returns the numeric block ID.
 |`bcoll_facing`|`integer`|no|`blocks.FACE_NORTH`|One of `blocks.FACE_XXXX`. Rotates the resolved collision shape the same way `model_facing` rotates the model. You can set it independently of `model_facing`. The collision shape does not need to match the visual, though it usually should|
 |`fluid_name`|`string`|no|N/D|[Fluid](fluids.md) name that shares the grid cell with the block|
 |`fluid_level`|`integer`|no|fluid `full_level`|Fluid level when `fluid_name` is present, in 1/16ths of a block. When omitted, the engine uses the fluid's `full_level`|
-|`fluid_faces`|`integer`|no|`0`|Bitmask of faces a fluid may enter or leave this variant through, made of `blocks.FACE_*` bits. `0` means the variant cannot be filled|
+|`fluid_faces`|`integer`|no|`0`|Bitmask of faces a fluid may enter or leave this variant through, made of `blocks.FACE_*` bits. `0` means no face|
 |`fluid_falling`|`boolean`|no|`false`|If true, the engine treats the fluid in this cell as falling. The cell uses the flowing texture at every level, and the flow points down|
-|`health`|`integer`|no|`0`|Base hit points needed to break the block. Tool effects can change this|
+|`health`|`integer`|no|`0`|Base hit points needed to break the block|
+
+> **NOTE:** this is planned. The engine stores `health`, but nothing reads it yet: a hit clears the cell at once.
 |`sound`|`string`|no|N/D|Sound set for this block|
 |`emission`|`integer`|no|`0`|Emission light value, from `0` to `15`. The engine clamps values outside the range|
-|`dissipation`|`integer`|no|`0`|Opacity of the block, from `0` to `15`. Light loses this many levels when it passes through. The engine clamps values outside the range. The engine treats a `RENDER_SOLID` block with `0` dissipation as fully opaque. The block only absorbs light across the cell faces that its collision shape covers. A block that fills half a cell lets light through its open half|
+|`dissipation`|`integer`|no|`0`|Opacity of the block, from `0` to `15`. Light loses this many levels when it passes through. The engine clamps values outside the range. The engine treats a `RENDER_SOLID` block with `0` dissipation as fully opaque. The block absorbs light across every cell face that its collision bounds touch, so a shape whose bounds fill the cell is opaque even when its geometry has a notch|
 |`collidable`|`boolean`|no|`true`|If true, the engine uses the collision shape to stop entity movement. A fluid does not pass through the block|
 |`selectable`|`boolean`|no|`true`|If true, a raycast can hit the block for selection and placement|
 |`friction`|`number`|no|`0.6`|Surface friction. A lower value makes the surface more slippery. The value must be greater than zero|
 |`speed`|`number`|no|`1.0`|Walk speed multiplier on this surface. The value must not be negative|
 |`bounce`|`number[3]`|no|`{0, 0, 0}`|Restitution on the X, Y and Z axes. The engine reflects the movement along a contacted axis and scales it by this value|
 |`tags`|`integer[]`|no|`{}`|Block tags|
+|`tools`|`integer[]`|no|`{}`|Tool bits that may drop this block, made of `blocks.TOOL_*` values|
 |`replaceable`|`boolean`|no|`false`|If true, other blocks can be placed into this cell without breaking it first|
 |`states`|`table`|no|`{}`|Blockstates table|
 |`variants`|`table[]`|no|`{}`|Variants table|
@@ -215,8 +218,8 @@ Each texture slot can have a mask texture that the engine uses for certain purpo
 |----|----|----|
 |`blocks.FACE_NORTH`|None|![](facing-north.svg)|
 |`blocks.FACE_SOUTH`|180 degrees around Y|![](facing-south.svg)|
-|`blocks.FACE_EAST`|+90 degrees around Y|![](facing-east.svg)|
-|`blocks.FACE_WEST`|-90 degrees around Y|![](facing-west.svg)|
+|`blocks.FACE_EAST`|-90 degrees around Y|![](facing-east.svg)|
+|`blocks.FACE_WEST`|+90 degrees around Y|![](facing-west.svg)|
 |`blocks.FACE_TOP`|-90 degrees around X|![](facing-top.svg)|
 |`blocks.FACE_BOTTOM`|+90 degrees around X|![](facing-bottom.svg)|
 
@@ -240,7 +243,7 @@ drops = {
 }
 ```
 
-The engine evaluates entries top to bottom. The first entry whose `when` clause matches (or that has no `when`) supplies the drops. The engine ignores later entries.
+> **NOTE:** this is planned. The engine stores the entries and their conditions, but nothing selects a drop yet, and no effect state exists that a `when` clause could match.
 
 ### States table
 
@@ -253,7 +256,9 @@ states = {
 }
 ```
 
-The engine stores blockstate values as hashed strings. You can write any value via `world.sset`. `hint` does not restrict this at runtime. `hint` is only a cross-check at registration time. The engine checks every `when` clause across the `variants` of this block against the union of `hint` lists for the states it references. A value missing from `hint` produces a console warning at load time (typo protection, e.g. `orientation = "bottum"`). Blocks that omit `hint` for a state skip validation for that state.
+The engine stores blockstate values as hashed strings. You can write any value via `world.set_state`. `hint` does not restrict this at runtime.
+
+> **NOTE:** this is planned. `hint` is stored but never checked, so a typo such as `orientation = "bottum"` passes without a warning. The check is meant to compare every `when` clause against the union of the `hint` lists and warn at load time.
 
 ### State object
 
@@ -279,7 +284,7 @@ variants = {
 }
 ```
 
-`overrides` is a table of registration fields (same shape as the top-level definition). It merges on top of the base definition of the block when `when` matches the current blockstate values.
+`overrides` is a table of registration fields that merges on top of the base definition when `when` matches the current blockstate values. It accepts the fields of a definition except `tools`, `states`, `variants` and the callbacks.
 
 ### Target table
 
@@ -306,6 +311,8 @@ The figure shows these fields on one hit against the top face.
 |`ry`|`number`|Block-local hit position Y component|
 |`rz`|`number`|Block-local hit position Z component|
 
+The `on_interact` handler receives the same table without `stem`, `bx`, `by` and `bz`.
+
 ### Occupant table
 
 The `on_place` handler receives an `occupant` table for the block currently in the placement cell.
@@ -313,13 +320,13 @@ The `on_place` handler receives an `occupant` table for the block currently in t
 |Field|Type|Description|
 |----|----|----|
 |`id`|`integer`|Numeric block ID in the placement cell. `blocks.NULL_BLOCK` when empty|
-|`replaceable`|`boolean`|Whether the placement cell can be occupied: `true` when empty or when the mod registered the existing block with `replaceable`. `false` otherwise|
+|`replaceable`|`integer`|Whether the placement cell can be occupied: `1` when empty or when the mod registered the existing block with `replaceable`, `0` otherwise|
 
 ### `on_place` handler
 
 ```lua
 on_place = function(bx, by, bz, target, occupant, actor)
-  if not occupant.replaceable then
+  if occupant.replaceable == 0 then
     return nil -- cell is occupied by a non-replaceable block
   end
 
