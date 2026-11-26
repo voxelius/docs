@@ -120,11 +120,13 @@ def flow_levels():
 
 # ------------------------------------------------------------ precip bands
 def precip_fade():
-    W2, H2 = 1000, 640
-    x0, y0, x1, y1 = 100, 80, 950, 500
+    # The page column is 750 px, so the canvas is sized to render almost 1:1
+    # and the axis labels keep the size of the body text.
+    W2, H2 = 760, 600
+    x0, y0, x1, y1 = 92, 70, 712, 450
     tmin, tmax = -20.0, 40.0
     MINOR, MAJOR = (198, 204, 210), (170, 177, 185)
-    _FRAME = "#8f98a2"
+    FRAME = "#8f98a2"
 
     def px_(t):
         return x0 + (t - tmin) / (tmax - tmin) * (x1 - x0)
@@ -139,19 +141,17 @@ def precip_fade():
         major = t % 20 == 0
         fig.line([(px_(t), y0), (px_(t), y1)],
                  stroke=svg.rgb(MAJOR if major else MINOR),
-                 width=1.5 if major else 1.0,
-                 casing=0)
+                 width=1.5 if major else 1.0, casing=0)
     for k in range(11):
         v = k / 10.0
         major = k % 5 == 0
         fig.line([(x0, py_(v)), (x1, py_(v))],
                  stroke=svg.rgb(MAJOR if major else MINOR),
-                 width=1.5 if major else 1.0,
-                 casing=0)
+                 width=1.5 if major else 1.0, casing=0)
     for x in (x0, x1):
-        fig.line([(x, y0), (x, y1)], stroke=_FRAME, width=2.0, casing=0)
+        fig.line([(x, y0), (x, y1)], stroke=FRAME, width=2.0, casing=0)
     for y in (y0, y1):
-        fig.line([(x0, y), (x1, y)], stroke=_FRAME, width=2.0, casing=0)
+        fig.line([(x0, y), (x1, y)], stroke=FRAME, width=2.0, casing=0)
 
     def band(min_v, max_v, fade, color):
         pts = []
@@ -172,23 +172,22 @@ def precip_fade():
     band(-2, 14, 6, "#7e60be")
 
     for v in (0.0, 0.5, 1.0):
-        fig.line([(x0 - 9, py_(v)), (x0, py_(v))], stroke=_FRAME, width=2.0, casing=0)
-        fig.text(x0 - 18, py_(v) + 8, f"{v:g}", size=23, anchor="end")
+        fig.line([(x0 - 9, py_(v)), (x0, py_(v))], stroke=FRAME, width=2.0, casing=0)
+        fig.text(x0 - 18, py_(v) + 7, f"{v:g}", size=20, anchor="end")
     for t in (-20, 0, 20, 40):
-        fig.line([(px_(t), y1), (px_(t), y1 + 9)], stroke=_FRAME, width=2.0, casing=0)
-        fig.text(px_(t), y1 + 38, f"{t}", size=23)
+        fig.line([(px_(t), y1), (px_(t), y1 + 9)], stroke=FRAME, width=2.0, casing=0)
+        fig.text(px_(t), y1 + 34, f"{t}", size=20)
 
-    lx, ly = x1 - 190, y0 + 34
+    # the key sits in the free corner above the rain plateau
+    lx, ly = x1 - 168, y0 + 34
     for k, (nm, color) in enumerate((("snow", "#4a94e8"), ("rain", "#7e60be"))):
-        yy = ly + k * 44
-        fig.polyline([(lx, yy), (lx + 46, yy)], stroke=color, width=5, casing=0)
-        fig.chip(lx + 56, yy, nm, size=24, anchor="start")
+        yy = ly + k * 42
+        fig.polyline([(lx, yy), (lx + 44, yy)], stroke=color, width=5, casing=0)
+        fig.chip(lx + 56, yy, nm, size=20, anchor="start")
 
-    # keep the label clear of the curve: the empty corner under it
-    # the tail starts inside the plate, so the plate hides its end
     fig.arrow((px_(23.4), py_(0.45)), (px_(17.4), py_(0.44)), shaft=3, head=13)
-    fig.chip(px_(24.0), py_(0.45), "fade", size=24, anchor="start")
+    fig.chip(px_(24.0), py_(0.45), "fade", size=20, anchor="start")
 
-    fig.text((x0 + x1) / 2, y1 + 76, "temperature, degrees Celsius", size=25)
-    fig.text(x0 + 2, y0 - 26, "weight", size=25, anchor="start")
+    fig.text((x0 + x1) / 2, y1 + 68, "temperature, degrees Celsius", size=21)
+    fig.text(x0 + 2, y0 - 22, "weight", size=21, anchor="start")
     save(fig.to_string(), "precip-fade.svg")
