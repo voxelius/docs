@@ -82,7 +82,8 @@ void vx::teardown(void)
 ## Styling considerations
 
 - Mark classes and structures `final` unless they are meant as a base.
-- A structure that gains a method becomes a class.
+- A structure that gains a method becomes a class. A structure holds fields and no behavior.
+- A tag structure stays a structure. It holds no fields, declares only static members, and marks a template argument.
 - Functions and methods with zero arguments use C-style `void` inside the parentheses.
 - Do not silence an unused value with a `void` cast (`(void)x;`, `static_cast<void>(x);`).
 - Name every parameter, including an unused one (`void f(int x, int y)`). An unnamed parameter of a fundamental type makes
@@ -219,9 +220,26 @@ Every translation unit keeps the same top-level order:
 ## Comments
 
 - Use plain C++ comments (except for include guards).
-- Comment sparingly. Explain non-obvious logic, or vent. Read existing comments for the tone.
-- Write a comment that needs following up as a tagged one: `TODO:`, `UNDONE:`, `FIXME:` or `NOTE:`. Keep it to the line limit and
-  write it in the same plain wording as the prose.
+- A comment is the exception. Leave one only for what the code cannot carry: a measurement, a tuning value, a batch size, a
+  protocol quirk, an outside requirement, or the reason behind a construct that looks wrong.
+- Never restate what the code next to it does.
+- Before you write a comment, try to remove the need for it. Rename the value (`free_slots`, not `slots // A set bit means
+  free`), move the code into a function whose name says what it does, or turn the claim into a `static_assert`.
+- Do not describe the algorithm of a function above it. A precondition or an ownership rule that every caller must respect
+  stays at the declaration: in the header for a public function, at the definition for a static one. A guarantee that only
+  some callers rely on goes at those call sites, as the reason the caller is correct.
+- A field, a constant or a local gets no comment that repeats its name, frame, units, axis or range. If the value needs that
+  text, write it once in the type or the schema. A comment that explains a field is a missing rename: `local_box`,
+  `axis_contacts`, `volume_fraction`.
+- Keep the measurement or the outside rule with the value it chose: `// 64 keeps the upload under the 1 MiB limit`, not
+  `// batch size`. Keep the reason with the strange construct: `// The server applies the client state on purpose; the
+  client cannot rebuild it`.
+- A comment that fails this test is removed in review. Do not add one to look helpful.
+- Read the existing comments for the tone.
+- Write a comment in Simplified Technical English: short sentences, one statement per sentence, active voice, present tense,
+  and one meaning per word.
+- Write a comment that needs following up as a tagged one: `TODO:`, `UNDONE:`, `FIXME:` or `NOTE:`. Keep it to the line limit
+  and write it in the same plain wording as the prose.
 - Do not leave commented-out code behind. Delete it.
 - Mark empty function or method bodies with `// empty`.
 

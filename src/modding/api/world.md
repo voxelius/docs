@@ -208,7 +208,7 @@ Retrieves the name of the world that the callback runs in. Callbacks from every 
 
 #### Return value
 
-- The world name, for example `overworld`. This is the key of the world in [worlds.jsonc](../worlds.md), not a namespaced identifier
+- The world name, for example `overworld`. This is the key of the world in [worlds.yml](../worlds.md), not a namespaced identifier
 
 ### Function: `world.seed() -> integer`
 

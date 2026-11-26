@@ -9,6 +9,7 @@
 |`client`|Client executable sources|
 |`core`|Core library. Useful without depending on block-related code|
 |`data`|Content packed with release executables. At least the `builtin` mod. More may appear later if people contribute|
+|`defaults`|Defaults that the engine copies into the user directory on the first run|
 |`deps`|Third-party dependencies|
 |`misc`|Small generators for the data assets|
 |`scripts`|Scripts used during build and elsewhere|
@@ -73,6 +74,7 @@ C:\PATH\TO\REPOSITORY
 │           ├───environment
 │           ├───gui
 │           └───precip
+├───defaults
 ├───deps
 │   ├───ed25519
 │   ├───eigen
@@ -86,6 +88,7 @@ C:\PATH\TO\REPOSITORY
 │   ├───miniz
 │   ├───parson
 │   ├───physfs
+│   ├───rapidyaml
 │   ├───SDL3
 │   ├───stb
 │   ├───thread_pool

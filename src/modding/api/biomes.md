@@ -33,16 +33,29 @@ Returns the numeric biome ID. When the name is already taken, the engine appends
 
 ## Palette table
 
-The figure shows a cut through the terrain. The four fields fill it from the top down.
+The figure shows a cut through the terrain. The land fields fill it from the top down. The shore fields take over in the band around sea level.
 
-![A cut through the terrain: surface on top, filler below it, basic deeper, and fluid in the ground below sea level](biome-palette.svg)
+![A cut through the terrain: land surface on top, land filler below it, the base block deeper, fluid in the ground below sea level, and the shore surface and shore filler at the water edge](biome-palette.svg)
 
 |Field|Description|
 |----|----|
-|`basic`|Basic block type, eg `builtin:stone`|
-|`filler`|Filler block type, eg `builtin:dirt`|
-|`surface`|Surface block type, eg `builtin:grass`|
-|`fluid`|Fluid block type, eg `builtin:water`|
+|`base`|Block deep below the surface, eg `builtin:stone`|
+|`land_filler`|Block below the land surface, eg `builtin:dirt`|
+|`land_surface`|Block on top of dry land, eg `builtin:grass`|
+|`fluid`|Fluid block that fills the ground below sea level, eg `builtin:water`|
+|`shore_surface`|Block on top of the shore, eg `builtin:sand`|
+|`shore_filler`|Block below the shore surface, eg `builtin:sand`|
+
+Every field is optional. The `vox2` generator fills a missing field from another field:
+
+- `base` falls back to `land_filler`, then to `land_surface`.
+- `land_filler` falls back to `base`.
+- `land_surface` falls back to `land_filler`.
+- `shore_surface` falls back to `land_surface`.
+- `shore_filler` falls back to `land_filler`.
+- `fluid` has no fallback. Without it, the generator fills no cell with a fluid.
+
+The `superflat` generator reads `land_surface`, `land_filler` and `base` as they are. It has no fallback.
 
 ## Palette entry
 
@@ -53,7 +66,7 @@ The figure shows a cut through the terrain. The four fields fill it from the top
 
 ## Scatter entry
 
-The engine evaluates scatter entries in list order. If several entries pass the roll on the same column, **the last entry in the list wins**. The engine skips the other entries for that column. Only the `vox17` generator places scatter; `superflat` ignores it.
+The engine evaluates scatter entries in list order. If several entries pass the roll on the same column, **the last entry in the list wins**. The engine skips the other entries for that column. Only the `vox2` generator places scatter; `superflat` ignores it.
 
 |Field|Type|Required|Default|Description|
 |----|----|----|----|----|
@@ -73,10 +86,12 @@ biomes.add("plains", {
   humidity = 60,
 
   palette = {
-    basic = { name = "stone" },
-    filler = { name = "dirt" },
-    surface = { name = "stone_slab", states = { orientation = "bottom" } },
+    base = { name = "stone" },
+    land_filler = { name = "dirt" },
+    land_surface = { name = "stone_slab", states = { orientation = "bottom" } },
     fluid = { name = "water" },
+    shore_surface = { name = "sand" },
+    shore_filler = { name = "sand" },
   },
 
   scatter = {
@@ -100,8 +115,10 @@ biomes.add("plains", {
 
 A biome does not carry climate coordinates. A world defines how the engine picks a biome through the `biome_selector` of its [world definition](../worlds.md#biome-selector).
 
-The `vox17` generator uses the `nearest` strategy. The engine samples five climate noises (temperature, humidity, continentalness, erosion, and weirdness). It then picks the biome whose target point in that space is nearest, weighted per axis. The selector's `entries` list the participating biomes and their target coordinates (0 to 99 per axis). `priority` breaks a tie, and `offset` biases the distance. During world load the engine nudges colliding targets until each is unique.
+The `vox2` generator samples two climate noises, temperature and humidity. It then picks the biome whose target point in that two-axis space is nearest, weighted per axis. The selector's `entries` list the participating biomes and their target coordinates (0 to 99 per axis). `priority` breaks a tie, and `offset` biases the distance. During world load the engine nudges colliding targets until each is unique.
 
-The `vox17` generator also accepts the `grid` strategy: two axes, `grid_size`, and a `lookup` table of biome names. See [World definitions](../worlds.md#grid).
+A world names a biome by its full identifier, so a mod biome needs its namespace. See [World definitions](../worlds.md#biome-selector).
+
+The `vox2` generator also accepts the `grid` strategy: two axes, `grid_size`, and a `lookup` table of biome names. See [World definitions](../worlds.md#grid).
 
 The `temperature` and `humidity` of a biome also feed the [precipitation selection](precip.md). A precipitation type names climate bands, and the engine picks the type that fits the block.

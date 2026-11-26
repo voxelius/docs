@@ -44,7 +44,7 @@ The figure shows the exchange. The table lists the same steps.
 
 ##### Spawn world
 
-The server admits the client into the world that `worlds.jsonc` marks with `"default": true`, or the first world when none is marked. The server sends the world shape, the weather seed and the clocks in the admission packets. The client therefore needs no world name of its own. The world seed never leaves the server.
+The server admits the client into the world that `worlds.yml` marks with `default: true`, or the first world when none is marked. The server sends the world shape, the weather seed and the clocks in the admission packets. The client therefore needs no world name of its own. The world seed never leaves the server.
 
 ##### Identity
 

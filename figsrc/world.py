@@ -13,38 +13,29 @@ INK = style.INK
 PAGE = "#7a818a"
 RULE = "#5b6168"
 
+PW, PH = 760, 440        # the palette figure
 
-PW, PH = 700, 420        # the palette figure
-INK = style.INK
-PAGE = "#7a818a"
-RULE = "#5b6168"
-
-SURFACE = "#6fc652"
-FILLER = "#8c6b4a"
-BASIC = "#9aa0a6"
+LAND_SURFACE = "#6fc652"
+LAND_FILLER = "#8c6b4a"
+BASE = "#9aa0a6"
 FLUID = "#5fa2e0"
+SHORE_SURFACE = "#e3d5a3"
+SHORE_FILLER = "#c2ab79"
 
-CELL = 34
-X0, Y0 = 140, 318          # bottom left of the cut
-HEIGHTS = [8, 8, 8, 6, 4, 3, 3, 4, 6, 8]
+CELL = 28
+X0, Y0 = 250, 360          # bottom left of the cut
+HEIGHTS = [12, 11, 10, 8, 5, 2, 4, 8, 11, 12]
 FILLER_DEPTH = 3
 SEA = 6                    # sea level, in cells above the base
+SHORE_BELOW = 4            # the shore band, relative to sea level
+SHORE_ABOVE = 1
+LX_RIGHT = X0 + len(HEIGHTS) * CELL + 20
+LX_LEFT = X0 - 18
 
 
 def text(fig, x, y, s, size=21, anchor="start", fill=PAGE, weight="bold"):
     fig.text(x, y, s, size=size, anchor=anchor, fill=fill, weight=weight,
              casing=0)
-
-
-def leader(fig, a, b):
-    fig.add(f'<path d="M {a[0]:.1f},{a[1]:.1f} L {b[0]:.1f},{b[1]:.1f}" '
-            f'fill="none" stroke="{style.CASING}" stroke-width="5.5" '
-            f'stroke-linecap="round"/>')
-    fig.add(f'<path d="M {a[0]:.1f},{a[1]:.1f} L {b[0]:.1f},{b[1]:.1f}" '
-            f'fill="none" stroke="{RULE}" stroke-width="1.8" '
-            f'stroke-linecap="round"/>')
-    fig.add(f'<circle cx="{a[0]:.1f}" cy="{a[1]:.1f}" r="4" fill="{RULE}" '
-            f'stroke="{style.CASING}" stroke-width="2"/>')
 
 
 def cell(fig, col, row, fill, opacity=1.0):
@@ -58,14 +49,20 @@ def palette():
     fig = style.SVG(PW, PH)
 
     for col, h in enumerate(HEIGHTS):
+        top = h - 1
+        # vox2 switches to the shore fields around sea level
+        shore = SEA - SHORE_BELOW <= top <= SEA + SHORE_ABOVE
+
         for row in range(h):
-            if row == h - 1:
-                # vox17 gives the top cell `filler` under water, never `surface`
-                fill = FILLER if h <= SEA else SURFACE
-            elif row >= h - 1 - FILLER_DEPTH:
-                fill = FILLER
+            if row == top:
+                if top >= SEA - 1:
+                    fill = SHORE_SURFACE if shore else LAND_SURFACE
+                else:
+                    fill = SHORE_FILLER if shore else LAND_FILLER
+            elif row >= top - FILLER_DEPTH:
+                fill = LAND_FILLER
             else:
-                fill = BASIC
+                fill = BASE
             cell(fig, col, row, fill)
         for row in range(h, SEA):
             cell(fig, col, row, FLUID, 0.8)
@@ -82,36 +79,39 @@ def palette():
 
     # sea level
     sea_y = Y0 - SEA * CELL
-    fig.add(f'<path d="M {X0 - 18},{sea_y} L {X0 + len(HEIGHTS) * CELL + 6},{sea_y}" '
+    fig.add(f'<path d="M {LX_LEFT},{sea_y} L {LX_RIGHT - 8},{sea_y}" '
             f'fill="none" stroke="{style.CASING}" stroke-width="6"/>')
-    fig.add(f'<path d="M {X0 - 18},{sea_y} L {X0 + len(HEIGHTS) * CELL + 6},{sea_y}" '
+    fig.add(f'<path d="M {LX_LEFT},{sea_y} L {LX_RIGHT - 8},{sea_y}" '
             f'fill="none" stroke="{RULE}" stroke-width="1.6" '
             f'stroke-dasharray="8 6"/>')
-    text(fig, X0 - 26, sea_y + 7, "sea level", 19, anchor="end", fill=PAGE,
+    text(fig, LX_LEFT, sea_y - 8, "sea level", 19, anchor="end", fill=PAGE,
          weight="normal")
 
-    # the four fields, with leaders into the cut
-    lx = X0 + len(HEIGHTS) * CELL + 34
-
-    def at(col, row, label, yoff=0):
+    def callout(col, row, label, side):
         cx = X0 + col * CELL + CELL / 2
         cy = Y0 - row * CELL - CELL / 2
+        tx = LX_LEFT + 8 if side == "left" else LX_RIGHT - 8
         fig.add(f'<circle cx="{cx}" cy="{cy}" r="4" fill="{RULE}" '
                 f'stroke="{style.CASING}" stroke-width="2"/>')
-        fig.add(f'<path d="M {cx},{cy} L {lx - 8},{cy + yoff}" fill="none" '
+        fig.add(f'<path d="M {cx},{cy} L {tx},{cy}" fill="none" '
                 f'stroke="{style.CASING}" stroke-width="5.5"/>')
-        fig.add(f'<path d="M {cx},{cy} L {lx - 8},{cy + yoff}" fill="none" '
+        fig.add(f'<path d="M {cx},{cy} L {tx},{cy}" fill="none" '
                 f'stroke="{RULE}" stroke-width="1.8"/>')
-        text(fig, lx, cy + yoff + 7, label, 21)
+        if side == "left":
+            text(fig, LX_LEFT, cy + 7, label, 21, anchor="end")
+        else:
+            text(fig, LX_RIGHT, cy + 7, label, 21)
 
-    at(1, 7, "surface")
-    at(1, 6, "filler")
-    at(1, 1, "basic")
-    at(5, 4, "fluid")
+    callout(1, 10, "land_surface", "right")
+    callout(1, 9, "land_filler", "right")
+    callout(1, 1, "base", "right")
+    callout(5, 4, "fluid", "right")
+    callout(3, 7, "shore_surface", "left")
+    callout(4, 4, "shore_filler", "left")
 
-    text(fig, X0 + len(HEIGHTS) * CELL / 2, Y0 + 46,
-         "Under water the top cell is filler.", 18, anchor="middle",
-         fill=PAGE, weight="normal")
+    text(fig, X0 + len(HEIGHTS) * CELL / 2, Y0 + 50,
+         "Shore: from four blocks under sea level to one above.", 18,
+         anchor="middle", fill=PAGE, weight="normal")
 
     save(fig.to_string(), "biome-palette.svg")
 

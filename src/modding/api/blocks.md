@@ -150,7 +150,7 @@ Returns the numeric block ID.
 |`fluid_name`|`string`|no|N/D|[Fluid](fluids.md) name that shares the grid cell with the block|
 |`fluid_level`|`integer`|no|fluid `full_level`|Fluid level when `fluid_name` is present, in 1/16ths of a block. When omitted, the engine uses the fluid's `full_level`|
 |`fluid_faces`|`integer`|no|`0`|Bitmask of faces a fluid may enter or leave this variant through, made of `blocks.FACE_*` bits. `0` means no face|
-|`fluid_falling`|`boolean`|no|`false`|If true, the engine treats the fluid in this cell as falling. The cell uses the flowing texture at every level, and the flow points down|
+|`fluid_falling`|`boolean`|no|`false`|If true, the engine treats the fluid in this cell as falling. The cell uses the flowing texture at every level, and the flow gains a strong push along the fluid gravity|
 |`health`|`integer`|no|`0`|Base hit points needed to break the block|
 |`sound`|`string`|no|N/D|Sound set for this block|
 |`emission`|`integer`|no|`0`|Emission light value, from `0` to `15`. The engine clamps values outside the range|

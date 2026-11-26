@@ -56,5 +56,6 @@ The figure shows the three orientations. A filled slab shares its cell with a fl
 - A `bottom` slab is open through its four side faces and the cell boundary above it. A `top` slab is open through its side faces and the boundary below it (`fluid_faces`). A `double` slab is a full cube and never holds a fluid.
 - A fillable slab gets `on_tick` and `on_break`. A filled cell keeps a full source that flows out of its open faces and ticks on neighbour changes, like a waterlogged block in vanilla. Breaking it leaves the fluid source behind.
 - Using a fluid on a fillable slab fills the slab instead of placing a fluid block next to it.
+- A placement doubles a slab instead of placing a new block. A slab on the top face of a `bottom` slab, or on the bottom face of a `top` slab of the same family, doubles that target. A placement into a cell that holds any slab doubles the occupant. A `double` occupant takes no placement.
 - Placing a fillable slab into a fluid source fills it immediately. The engine displaces flowing water, and the slab stays dry.
 - The function keeps the movement response fields (`collidable`, `selectable`, `friction`, `speed`, `bounce`) of the prototype unchanged. It only defines block collisions.
