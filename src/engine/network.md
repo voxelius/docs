@@ -168,12 +168,12 @@ Server's response to a `StatusRequestPacket`
 |Type|Name|Description|
 |----|----|----|
 |`uint32`|`major`|Major game version|
+|`uint16`|`slots`|Maximum player slots|
+|`uint16`|`players`|Current player count|
+|`string`|`motd`|One-line MOTD no longer than 32 characters|
 |`uint32`|`minor`|Minor game version|
 |`uint32`|`patch`|Patch game version|
 |`uint32`|`tags`|Server tags|
-|`string`|`motd`|One-line MOTD no longer than 32 characters|
-|`uint16`|`players`|Current player count|
-|`uint16`|`slots`|Maximum player slots|
 
 ##### Server flags
 
@@ -227,7 +227,6 @@ On successful auth, server's response to `AuthResponsePacket`
 |`uint16`|`client_id`|Client ID|
 |`uint64`|`identity`|Client identity|
 |`string`|`username`|Assigned username|
-|`uint64`|`entity`|Player entity|
 
 ### `0x0006` `Disconnect`
 
