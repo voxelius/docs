@@ -10,7 +10,10 @@ RED = "#e0524e"
 GREY = "#6b7076"
 LGREY = "#eceef0"
 CASING = "#fdfdfd"
-TEXT_CASING = "#cfd3d8"   # softer than CASING: an outline this thin does not need to be white
+TEXT_CASING = "#cfd3d8"
+# Text on the page rather than on a filled surface.  A mid grey reads on the light
+# and on the dark theme, and without an outline there is nothing to smear.
+PAGE_INK = "#7a818a"
 FONT = "Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace"
 
 
@@ -70,8 +73,8 @@ class SVG:
             f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{fill}" stroke="{stroke}" '
             f'stroke-width="{width}"/>')
 
-    def text(self, x, y, s, size=26, anchor="middle", fill=INK, weight="bold",
-             casing=None, rotate=None, family=FONT):
+    def text(self, x, y, s, size=26, anchor="middle", fill=PAGE_INK,
+             weight="bold", casing=0, rotate=None, family=FONT):
         """Draw text with a white outline.
 
         The outline is a second copy of the text underneath, not a stroke with
@@ -82,8 +85,6 @@ class SVG:
         common = (f'x="{x:.2f}" y="{y:.2f}" font-family="{family}" '
                   f'font-size="{size}" font-weight="{weight}" '
                   f'text-anchor="{anchor}"{tr}')
-        if casing is None:
-            casing = max(1.1, round(size * 0.055, 1))
         if casing:
             self.parts.append(
                 f'<text {common} fill="none" stroke="{TEXT_CASING}" '
@@ -105,7 +106,8 @@ class SVG:
         self.parts.append(
             f'<rect x="{rx:.2f}" y="{ry:.2f}" width="{w:.2f}" height="{h:.2f}" '
             f'rx="4" fill="#ffffff" fill-opacity="{opacity}"/>')
-        self.text(x, y, text, size=size, anchor=anchor, casing=0)
+        # a plate is a light surface, so its label keeps the dark ink
+        self.text(x, y, text, size=size, anchor=anchor, casing=0, fill=INK)
 
     def arrow(self, a, b, shaft=5, head=16, fill=INK, casing=2.5):
         """A filled arrow with a white casing, built from a shaft and a head."""

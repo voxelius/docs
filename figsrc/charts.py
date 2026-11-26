@@ -71,7 +71,7 @@ def climate_square():
         px_, py_ = to_px(site)
         fig.circle(px_, py_, 7, fill=svg.INK)
         fig.circle(px_, py_, 3, fill="#ffffff")
-        fig.text(px_, py_ - 20, name, size=28)
+        fig.chip(px_, py_ - 22, name, size=26)
 
     sx, sy = to_px((0.5, 0.5))
     fig.circle(sx, sy, 8, fill=RED, stroke="#ffffff", width=3)

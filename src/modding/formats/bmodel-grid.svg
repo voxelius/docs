@@ -124,6 +124,4 @@
 <path d="M 604.08,370.41 L 650.08,308.41" fill="none" stroke="#e0524e" stroke-width="3.2" stroke-linecap="round"/>
 <rect x="646.08" y="279.71" width="261.80" height="36.92" rx="4" fill="#ffffff" fill-opacity="0.92"/>
 <text x="656.08" y="304.41" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" font-weight="bold" text-anchor="start" fill="#1a1a1a">max [11, 7, 14]</text>
-<text x="550.00" y="856.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" font-weight="bold" text-anchor="middle" fill="none" stroke="#cfd3d8" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round">cell = 16 units on each axis, one grid line = 1/16</text>
-<text x="550.00" y="856.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" font-weight="bold" text-anchor="middle" fill="#1a1a1a">cell = 16 units on each axis, one grid line = 1/16</text>
 </svg>

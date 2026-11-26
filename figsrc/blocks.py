@@ -271,7 +271,5 @@ def bmodel_grid():
         fig.circle(pmax[0], pmax[1], 8, fill="#e0524e", stroke="#ffffff", width=3)
         fig.leader(pmax, (pmax[0] + 46, pmax[1] - 62))
         fig.chip(pmax[0] + 52, pmax[1] - 66, "max [11, 7, 14]", size=26, anchor="start")
-        fig.text(W / 2, H - 24, "cell = 16 units on each axis, one grid line = 1/16",
-                 size=24)
 
     write_figure(geom, pr, H, "bmodel-grid.svg", tail)

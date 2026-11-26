@@ -6,20 +6,20 @@
 <rect x="120" y="80" width="830" height="710" fill="none" stroke="#1a1a1a" stroke-width="3"/>
 <circle cx="335.8" cy="278.8" r="7" fill="#1a1a1a" stroke="none" stroke-width="0"/>
 <circle cx="335.8" cy="278.8" r="3" fill="#ffffff" stroke="none" stroke-width="0"/>
-<text x="335.80" y="258.80" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" font-weight="bold" text-anchor="middle" fill="none" stroke="#cfd3d8" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round">clear</text>
-<text x="335.80" y="258.80" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" font-weight="bold" text-anchor="middle" fill="#1a1a1a">clear</text>
+<rect x="285.50" y="232.10" width="100.60" height="36.92" rx="4" fill="#ffffff" fill-opacity="0.92"/>
+<text x="335.80" y="256.80" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" font-weight="bold" text-anchor="middle" fill="#1a1a1a">clear</text>
 <circle cx="651.2" cy="506.0" r="7" fill="#1a1a1a" stroke="none" stroke-width="0"/>
 <circle cx="651.2" cy="506.0" r="3" fill="#ffffff" stroke="none" stroke-width="0"/>
-<text x="651.20" y="486.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" font-weight="bold" text-anchor="middle" fill="none" stroke="#cfd3d8" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round">rain</text>
-<text x="651.20" y="486.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" font-weight="bold" text-anchor="middle" fill="#1a1a1a">rain</text>
+<rect x="608.96" y="459.30" width="84.48" height="36.92" rx="4" fill="#ffffff" fill-opacity="0.92"/>
+<text x="651.20" y="484.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" font-weight="bold" text-anchor="middle" fill="#1a1a1a">rain</text>
 <circle cx="784.0" cy="321.4" r="7" fill="#1a1a1a" stroke="none" stroke-width="0"/>
 <circle cx="784.0" cy="321.4" r="3" fill="#ffffff" stroke="none" stroke-width="0"/>
-<text x="784.00" y="301.40" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" font-weight="bold" text-anchor="middle" fill="none" stroke="#cfd3d8" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round">storm</text>
-<text x="784.00" y="301.40" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" font-weight="bold" text-anchor="middle" fill="#1a1a1a">storm</text>
+<rect x="733.70" y="274.70" width="100.60" height="36.92" rx="4" fill="#ffffff" fill-opacity="0.92"/>
+<text x="784.00" y="299.40" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" font-weight="bold" text-anchor="middle" fill="#1a1a1a">storm</text>
 <circle cx="452.0" cy="662.2" r="7" fill="#1a1a1a" stroke="none" stroke-width="0"/>
 <circle cx="452.0" cy="662.2" r="3" fill="#ffffff" stroke="none" stroke-width="0"/>
-<text x="452.00" y="642.20" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" font-weight="bold" text-anchor="middle" fill="none" stroke="#cfd3d8" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round">snow</text>
-<text x="452.00" y="642.20" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" font-weight="bold" text-anchor="middle" fill="#1a1a1a">snow</text>
+<rect x="409.76" y="615.50" width="84.48" height="36.92" rx="4" fill="#ffffff" fill-opacity="0.92"/>
+<text x="452.00" y="640.20" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="26" font-weight="bold" text-anchor="middle" fill="#1a1a1a">snow</text>
 <circle cx="535.0" cy="435.0" r="8" fill="#e0524e" stroke="#ffffff" stroke-width="3"/>
 <path d="M 535.00,435.00 L 473.00,383.00" fill="none" stroke="#e0524e" stroke-width="3.2" stroke-linecap="round"/>
 <rect x="253.50" y="347.25" width="221.50" height="35.50" rx="4" fill="#ffffff" fill-opacity="0.92"/>
@@ -28,10 +28,7 @@
 <path d="M 820.56,89.29 L 834.40,77.95 L 817.03,73.68 Z" fill="#fdfdfd" stroke="#fdfdfd" stroke-width="5.0" stroke-linejoin="round"/>
 <path d="M 684.84,113.90 L 819.24,83.44 L 818.35,79.54 L 683.96,110.00 Z" fill="#1a1a1a"/>
 <path d="M 820.56,89.29 L 834.40,77.95 L 817.03,73.68 Z" fill="#1a1a1a"/>
-<text x="674.40" y="117.95" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="end" fill="none" stroke="#cfd3d8" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">drift</text>
-<text x="674.40" y="117.95" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="end" fill="#1a1a1a">drift</text>
-<text x="535.00" y="846.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="middle" fill="none" stroke="#cfd3d8" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">axis 1: 1536 blocks per noise cell</text>
-<text x="535.00" y="846.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="middle" fill="#1a1a1a">axis 1: 1536 blocks per noise cell</text>
-<text x="60.00" y="435.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="middle" transform="rotate(-90 60.00 435.00)" fill="none" stroke="#cfd3d8" stroke-width="2.8" stroke-linejoin="round" stroke-linecap="round">axis 2: 1024 blocks per noise cell</text>
-<text x="60.00" y="435.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="middle" transform="rotate(-90 60.00 435.00)" fill="#1a1a1a">axis 2: 1024 blocks per noise cell</text>
+<text x="674.40" y="117.95" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="end" fill="#7a818a">drift</text>
+<text x="535.00" y="846.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="middle" fill="#7a818a">axis 1: 1536 blocks per noise cell</text>
+<text x="60.00" y="435.00" font-family="Anonymous Pro, ui-monospace, SFMono-Regular, Menlo, monospace" font-size="25" font-weight="bold" text-anchor="middle" transform="rotate(-90 60.00 435.00)" fill="#7a818a">axis 2: 1024 blocks per noise cell</text>
 </svg>
