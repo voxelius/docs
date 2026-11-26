@@ -1,7 +1,7 @@
 # figure sources
 
 > [!NOTE]
-> These scripts are vibecoded, if something doesn't work, make an LLM fix an another LLM's mistakes and pray it works again afterwards :trollface:  
+> These scripts are vibecoded, if something doesn't work, make an LLM fix another LLM's mistakes and pray it works again afterwards :trollface:  
 
 The scripts that render the SVG figures under `src/`. Every figure is
 generated text: there is no raster step, no image editor and no binary source
