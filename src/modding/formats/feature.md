@@ -6,6 +6,10 @@ Stored features live under: `namespace:features`
 
 A mod authors features facing **north** (`blocks.FACE_NORTH`). Placement rules supply world origin and facing at runtime.
 
+The figure shows the parts of one feature in space. The offsets count from the ground block.
+
+![A tree built from a palette and parts: dirt on the ground block, oak logs above it, leaves in the canopy](feature-parts.svg)
+
 ## Top-level fields
 
 |Field|Type|Required|Default|Description|

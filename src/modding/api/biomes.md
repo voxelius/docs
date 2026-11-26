@@ -33,6 +33,10 @@ Returns the numeric biome ID.
 
 ## Palette table
 
+The figure shows a cut through the terrain. The four fields fill it from the top down.
+
+![A cut through the terrain: surface on top, filler below it, basic deeper, and fluid in the ground below sea level](biome-palette.svg)
+
 |Field|Description|
 |----|----|
 |`basic`|Basic block type, eg `builtin:stone`|
@@ -69,7 +73,6 @@ biomes.add("plains", {
   humidity = 60,
 
   palette = {
-    empty = { name = "air" },
     basic = { name = "stone" },
     filler = { name = "dirt" },
     surface = { name = "stone_slab", states = { orientation = "bottom" } },

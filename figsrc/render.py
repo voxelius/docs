@@ -15,6 +15,7 @@ import blocks
 import charts
 import facing
 import net
+import world
 import style
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,6 +28,8 @@ DESTINATIONS = {
     "resource-life.svg": "src/engine",
     "status-ping.svg": "src/engine",
     "login.svg": "src/engine",
+    "biome-palette.svg": "src/modding/api",
+    "feature-parts.svg": "src/modding/formats",
     "bcoll-shapes.svg": "src/modding/formats",
     "bmodel-grid.svg": "src/modding/formats",
     "slabs-orientation.svg": "src/modding/libs",
@@ -47,6 +50,8 @@ FIGURES = {
     "resource-life": arch.resources,
     "status-ping": net.status,
     "login": net.login,
+    "biome-palette": world.palette,
+    "feature-parts": world.feature,
     "bcoll-shapes": blocks.bcoll_shapes,
     "bmodel-grid": blocks.bmodel_grid,
     "slabs-orientation": blocks.slabs_orientation,
